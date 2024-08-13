@@ -28,6 +28,16 @@ padding: 46px 0;
     }
 }
 
+.logo {
+    @media (max-width: 480px) {
+        img {
+            width: 56px;
+            height: 30px;
+        }
+    }
+
+}
+
 .authBody {
     display: flex;
     align-items: center;

@@ -20,6 +20,7 @@ import WallletIcon from '../../../public/checkout/wallet.svg';
 import DiscountIcon from '../../../public/checkout/discount.svg';
 import CoinsUpIcon from '../../../public/checkout/coins-up.svg';
 import TouchIcon from '../../../public/checkout/touch.svg';
+import LoadingIcon from '../../../public/checkout/loading.svg'
 
 
 const Checkout = () => {
@@ -46,6 +47,7 @@ const Checkout = () => {
             <UserIcon className={styles.userIcon} />
             <input placeholder="Введите логин..." className={styles.inputLogin} />
             <div className={styles.info}><InfoIcon className={styles.infoIcon} /></div>
+            {/* <LoadingIcon /> */}
         </div>
         <div className={styles.wrap}>
             <div className={styles.mail}><MailIcon className={styles.mailIcon} /><input placeholder="Почта..." type="mail" className={styles.input}/></div>
