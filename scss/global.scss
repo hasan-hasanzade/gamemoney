@@ -87,8 +87,9 @@ body {
   display: flex;
   align-items: center;
   background-color: #1C232D;
-  padding: 45px!important;
+  padding: 37px!important;
   width: 345px;
+  min-height: 120px;
   @media (max-width: 800px) {
     width: 100%;
     padding: 30px;

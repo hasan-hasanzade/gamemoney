@@ -25,7 +25,7 @@ const Activity = () => {
                 <div className={styles.info}>
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.time}>
-                    <ClockIcon className={styles.clockIcon}/>
+                    <ClockIcon width={13} height={13} className={styles.clockIcon}/>
                     <span>{item.time}</span>
                   </div>
                 </div>

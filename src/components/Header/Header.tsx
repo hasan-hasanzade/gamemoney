@@ -19,10 +19,10 @@ const Header = () => {
                     <nav className={styles.menu}>
                         <ul className={styles.list}>
                             <li>
-                                <Link className={styles.item} href='#'>
+                                <div className={styles.item}>
                                     <MainIcon className={styles.icon}/>
                                     <div className={styles.text}><h1>Пополнить баланс Steam (Стим) моментально</h1></div>
-                                </Link>
+                                </div>
                             </li>
                             <li>
                                 <Link className={styles.item} href="#">

@@ -132,7 +132,7 @@ const Checkout = () => {
             </label>
         </div>
         <div className={styles.submitBtn}>
-            <button><TouchIcon width={20} height={27}/> Пополнить <span>200₽</span></button>
+            <button><TouchIcon width={20} height={27}/> Пополнить <span>260₽</span></button>
         </div>
       </form>
     </div>

@@ -31,7 +31,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -192,7 +192,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
@@ -238,7 +238,7 @@ const ReviewsMainBlock = () => {
                             <div className={styles.cost}>100 ₽</div>
                         </div>
                         <div className={styles.rating}>
-                            <ThumbsUpIcon />
+                            <ThumbsUpIcon width={23} height={22.27} />
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>

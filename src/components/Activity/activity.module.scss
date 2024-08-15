@@ -10,6 +10,7 @@
         align-items: center;
         gap: 20px;
     }
+    z-index: 500;
 }
 
 .title {
@@ -64,11 +65,11 @@
         }
         .time {
             span {
-                color: #fff;
+                color: #E6E6F8;
             }
         }
         .cost {
-            color: #fff;
+            color: #E6E6F8;
         }
     }
     &:not(:first-child) {
@@ -79,7 +80,7 @@
     &:hover {
         background-color: #222B39;
         .cost {
-            color: #fff;
+            color: #E6E6F8;
             font-size: 14px;
             font-weight: 500;
         }
@@ -138,7 +139,7 @@
 }
 
 .name {
-    color: #fff;
+    color: #E6E6F8;
     font-size: 14px;
     font-weight: 500;
 }
