@@ -45,7 +45,9 @@
 
 body {
   font-weight: 500;
-  background-color: $bgPrimaryBlue;
+  background-image: linear-gradient(180deg, #161C23, #0f141a)!important;
+  background-repeat: no-repeat;
+    background-attachment: fixed;
   font-family: $fontFamily;
   color: $primaryText;
   .lock & {

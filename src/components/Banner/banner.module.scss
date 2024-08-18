@@ -108,10 +108,15 @@
 }
 
 .inner {
-    padding: 22px 27px;
+    padding: 25px 27px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 1400px) {
+        gap: 12px;
+        padding: 29px 27px;
+    }
+
 }
 
 @media (max-width: 1005px) {

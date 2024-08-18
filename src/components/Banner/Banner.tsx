@@ -6,6 +6,7 @@ import TinkIcon from '../../../public/banner/tinkoff.svg';
 import CardIcon from '../../../public/banner/bank-card.svg';
 import CountUp from 'react-countup';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Banner = () => {
   return (
@@ -37,7 +38,7 @@ const Banner = () => {
                         </div>
                 </div>
             </div>
-            <div className={styles.blueBanner}>
+            <Link href='#' className={styles.blueBanner}>
                 <div className={styles.inner}>
                     <div className={styles.lSide}>
                         <TinkIcon width={176} height={59}/>
@@ -49,7 +50,7 @@ const Banner = () => {
                         <div className={styles.lisence}>Лицензия на рекламу №43254</div>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     </div>
   )

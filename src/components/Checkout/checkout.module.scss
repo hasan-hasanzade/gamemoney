@@ -43,6 +43,7 @@
         color: $primaryText;
         font-weight: 600;
         font-size: 14px;
+        font-family: $fontFamily;
     }
     font-family: $fontFamily;
 }
@@ -213,12 +214,13 @@
         margin-left: 15px;
         background-color: inherit;
         color: inherit;
-        width: 100px;
+        width: 100%;
         @media (max-width: 1400px){
             width: 50px;
         }
         font-weight: 800;
         font-size: 14px;
+        font-family: $fontFamily;
     }
 }
 
@@ -320,9 +322,7 @@
     align-items: center;
     justify-content: center;
     transition: all .4s ease;
-    &:hover {
-        box-shadow: 15px 0px 11.6px 0px rgba(25, 240, 5, 0.12);
-    }
+    box-shadow: 15px 0px 11.6px 0px rgba(25, 240, 5, 0.12);
     cursor: pointer;
 }
 
@@ -402,7 +402,7 @@
       top: 0px;
       border-radius: 4px;
       background-color: #364152;
-      color: #fff;
+      color: #E6E6F8;
       width: 40px;
       height: 19px;
       display: flex;
@@ -511,7 +511,7 @@
 .checkmark {
     position: relative;
     height: 18px;
-    width: 18px;
+    min-width: 18px;
     background-color: #364152;
     border-radius: 5px;
     margin-right: 8px;
@@ -553,7 +553,7 @@
         color: #E6E6F8;
         gap: 12px;
         font-weight: 700;
-        width: 90%;
+        width: 100%;
         font-family: $fontFamily;
         font-size: 20px;
         line-height: 20px;
@@ -569,15 +569,27 @@
             box-shadow: none;
             background-color: $primaryTextHover;
         }
+        @media (max-width: 480px) {
+            font-size: 18px;
+        }
+    }
+
+}
+
+@media (max-width: 480px) {
+    .iconTouch {
+        display: none;
     }
 }
 
 .customTooltip {
     color: rgba(230, 230, 248, 0.55)!important;
+    background-color: #000!important;
     padding: 8px 22px!important;
     border-radius: 30px!important;
     font-size: 14px!important;
     font-weight: 500!important;
+    z-index: 5000!important;
 }
 
 .check {
@@ -590,7 +602,6 @@
     color: #E6E6F8;
     gap: 12px;
     font-weight: 700;
-    width: 10%;
     font-family: $fontFamily;
     font-size: 20px;
     line-height: 20px;
@@ -599,6 +610,7 @@
     &:hover {
         box-shadow: 0px 0px 70px 0px rgba(231, 187, 11, 0.3);
     }
+    min-width: 57px;
 }
 
 @media (max-width: 1005px){

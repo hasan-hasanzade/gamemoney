@@ -16,14 +16,14 @@ const Footer = () => {
                     <CheckFileIcon className={styles.icon} width={15} height={18}/>
                     Реквизиты
                 </Link>
-                <Link className={styles.link} href='#'>
+                <a className={styles.link} href='/privacy.pdf' target='_blank'>
                     <DownFileIcon className={styles.icon} width={15} height={18}/>
                     Публичная оферта
-                </Link>
-                <Link className={styles.link} href='#'>
+                </a>
+                <a className={styles.link} href='/terms.pdf' target='_blank'>
                     <DownFileIcon className={styles.icon} width={15} height={18}/>
                     Политика конфиденциальности
-                </Link>
+                </a>
             </div>
             <div className={styles.mobileIcons}>
                     <a href="#" className="">

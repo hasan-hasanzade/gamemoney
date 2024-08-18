@@ -1,77 +1,73 @@
+// progress.module.scss
 @import '../../../scss/breakpoints.scss';
 @import '../../../scss/colors.scss';
 @import '../../../scss/mixins.scss';
 @import '../../../scss/typhography.scss';
 
 .progress {
-
+  // Add any required styling here
 }
 
 .stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 63px;
 }
+
 .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.number{
-    margin-top: 14px;
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 16px;
-
-    color: inherit;
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.numberOne  {
-    margin-top: 14px;
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 16px;
+.number, .numberOne {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 16px;
+  color: inherit;
+}
 
-    color: #e6e6e6;
+.numberOne {
+  color: #e6e6e6;
 }
 
 .bar {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .barContainer {
-    background-color: #364152;
-    border-radius: 12px;
-    height: 8px;
-    overflow: hidden;
-  }
-  
-  .barCompleted {
-    background-color: $primaryGreen;
-    width: 80%;
-    height: 100%;
-    transition: width 0.5s ease-in-out; // Анимация изменения ширины.
-  }
-  
-  .barWrapper {
-    border-radius: 12px;
-  }
+  background-color: #364152;
+  border-radius: 12px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.barCompleted {
+  background-color: $primaryGreen;
+  width: 0; // Start with 0 width for animation
+  height: 100%;
+  transition: width 0.5s ease-in-out; // Ensure this is correct and applied
+}
+
+.barWrapper {
+  border-radius: 12px;
+}
 
 .userStats {
-    text-align: center;
-    margin-top: 22px;
-    font-weight: 600;
-    line-height: 140%;
-    font-size: 15px;
+  text-align: center;
+  margin-top: 22px;
+  font-weight: 600;
+  line-height: 140%;
+  font-size: 15px;
 }
 
 .percent {
-    font-weight: 900;
-    font-size: 15px;
-    line-height: 140%;
-    margin-right: 3px;
-    color: $primaryGreen;
+  font-weight: 900;
+  font-size: 15px;
+  line-height: 140%;
+  margin-right: 3px;
+  color: $primaryGreen;
 }

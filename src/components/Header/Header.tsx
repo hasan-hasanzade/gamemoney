@@ -14,31 +14,31 @@ const Header = () => {
     <div className={styles.header}>
         <div className="container">
             <div className={styles.body}>
-                <Link href='/'><div className={styles.logo}><Image src='/logo.svg' width={75} height={40} quality={100} alt='лого'></Image></div></Link>
+                <Link className={styles.logoLink} href='/'><div className={styles.logo}><Image src='/logo.svg' width={75} height={40} quality={100} alt='лого'></Image></div></Link>
                 <div className={styles.main}>
                     <nav className={styles.menu}>
                         <ul className={styles.list}>
                             <li>
                                 <div className={styles.item}>
-                                    <MainIcon className={styles.icon}/>
+                                    <MainIcon width={20} height={20} className={styles.icon}/>
                                     <div className={styles.text}><h1>Пополнить баланс Steam (Стим) моментально</h1></div>
                                 </div>
                             </li>
                             <li>
-                                <Link className={styles.item} href="#">
-                                    <UserIcon className={styles.icon}/>
+                                <Link className={styles.item} href="/profile">
+                                    <UserIcon width={20} height={20} className={styles.icon}/>
                                     <div className={styles.text}>Профиль</div>
                                 </Link>
                             </li>
                             <li>
                                 <Link className={styles.item} href='/faq'>
-                                     <QuestionIcon className={styles.icon}/>
+                                     <QuestionIcon width={20} height={20} className={styles.icon}/>
                                     <div className={styles.text}>FAQ</div>
                                 </Link>
                             </li>
                             <li>
                                 <Link className={styles.item} href='/reviews'>
-                                    <ReviewIcon className={styles.icon}/>
+                                    <ReviewIcon width={23} height={20} className={styles.icon}/>
                                     <div className={styles.text}>Отзывы</div>
                                 </Link>
                             </li>

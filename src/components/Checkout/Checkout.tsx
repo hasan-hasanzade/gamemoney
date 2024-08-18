@@ -85,7 +85,14 @@ const Checkout: React.FC = () => {
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>, field: keyof InputValues) => {
-        const value = e.target.value.trim();
+        let value = e.target.value.trim();
+    
+        if (field === 'price') {
+            // Разрешаем ввод только чисел
+            if (!/^\d*$/.test(value)) {
+                return; // Если введено не число, прекращаем выполнение
+            }
+        }
     
         setInputValues(prevState => ({ ...prevState, [field]: value }));
     
@@ -113,6 +120,7 @@ const Checkout: React.FC = () => {
             }
         }, 1000);
     };
+    
     
     const handleButtonClick = (value: string) => {
         setInputValues(prevState => ({ ...prevState, price: value }));
@@ -153,7 +161,7 @@ const Checkout: React.FC = () => {
                             value={inputValues.login}
                             onChange={(e) => handleInputChange(e, 'login')}
                         />
-                        <div className={styles.info}><InfoIcon className={styles.infoIcon} /></div>
+                        <Link href='/faq' className={styles.info}><InfoIcon className={styles.infoIcon} /></Link>
                         <div className={styles.inputState}>
                             {loadingStates.login && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
                             {renderIcon(inputStatuses.login)}
@@ -307,7 +315,7 @@ const Checkout: React.FC = () => {
                             })} 
                             onClick={handleSubmit}
                         >
-                            <TouchIcon width={20} height={27}/> Пополнить <span>260₽</span>
+                            <TouchIcon className={styles.iconTouch} width={20} height={27}/> Пополнить <span>260₽</span>
                         </button>
                         <Link 
                             href='#' 

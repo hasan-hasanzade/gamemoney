@@ -43,7 +43,7 @@ const Info = () => {
                 <div className={styles.title}>Преимущество Gamemoney?</div>
                 <div className={styles.subtitle}>Мы с командой создали сервис по платежам в игровые платформы, первым запустили пополнение Стим (Steam). Всего за несколько минут пользователь может перевести деньги и осуществить покупку игры или другого контента. Для наших клиентов предлагаются такие преимущества:</div>
 
-                <div className={styles.ways}>
+                <div className={styles.mainWays}>
                     <div className={styles.img}>
                         <SuccessIcon className={styles.icon} width={73} height={81} />
                     </div>
@@ -59,7 +59,7 @@ const Info = () => {
                     </ul>
                     <RubCoinsIcon width={300} height={232}/>
                 </div>
-                <div className={styles.service}><LikeIcon width={19} height={21} className={styles.iconLike}/> Мы предлагаем комфортные условия обслуживания для клиентов, и возможность пополнения кошелька за несколько кликов</div>
+                <div className={styles.mainService}><LikeIcon width={19} height={21} className={styles.iconLike}/> Мы предлагаем комфортные условия обслуживания для клиентов, и возможность пополнения кошелька за несколько кликов</div>
             </div>
             <div className={styles.description}>
                 <div className={styles.descItem}>
@@ -98,7 +98,7 @@ const Info = () => {
                             <span>Использование Gamemoney</span> - отличное решение, которое позволит сэкономить время, и пополнять баланс в один клик. Для удобства, мы предлагаем использование разных способов оплаты с быстрым зачислением денег. При возникновении сложностей с переводом денег, воспользуйтесь консультацией службы поддержки.
                         </div>
                         <div className={styles.btn}>
-                            <button><ClickIcon className={styles.clickIcon} width={20} height={27}/> Пополнить</button>
+                            <button><ClickIcon className={styles.clickIcon} width={20} height={27}/>Пополнить</button>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const Info = () => {
                     <div className={styles.title}>Сотрудничество</div>
                     <div className={styles.subtitle}>Совместная работа с Тинькофф позволила нам получить подключение к интернет-эквайрингу, что упростило прием платежей. Это дает возможность ускорить процесс перечисления денег, гарантируя безопасность. Также, внимания заслуживают лимиты пополнения, ведь минимальная сумма – всего 25 рублей. Максимального порога для перевода нет, что лишает ограничений.</div>
                 </div>
-                <TinkIcon width={71} height={73}/>
+                <TinkIcon className={styles.tinkIcon} width={71} height={73}/>
             </div>
             <div className={styles.reputation}>
                 <StarIcon className={styles.icon} width={73} height={69}/>

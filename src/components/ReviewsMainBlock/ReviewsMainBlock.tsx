@@ -227,8 +227,8 @@ const ReviewsMainBlock = () => {
                             <div className={styles.info}>
                                 <div className={styles.name}>GlamBl***</div>
                                 <div className={styles.dates}>
-                                    <span className={styles.date}>06 </span>
-                                    <span className={styles.month}>марта в </span>
+                                    <span className={styles.date}>06</span>
+                                    <span className={styles.month}>марта в</span>
                                     <span className={styles.time}>15:29</span>
                                 </div>
                             </div>
@@ -242,7 +242,6 @@ const ReviewsMainBlock = () => {
                             <div className={styles.ratText}>Рекомендую</div>
                         </div>
                     </div>
-
                 </Link>
                 <div className={styles.banner}>
                     <div className={styles.inner}>
