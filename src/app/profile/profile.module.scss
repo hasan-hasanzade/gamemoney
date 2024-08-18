@@ -24,6 +24,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+    }
 }
 
 .account {
@@ -48,6 +52,9 @@
         border-radius: 50%;
     }
     transition: all .4s ease;
+    @media (max-width: 390px) {
+        display: none;
+    }
 }
 
 .profileInfo {
@@ -74,6 +81,11 @@
     display: flex;
     align-items: center;
     gap: 18px;
+    flex-wrap: wrap;
+    @media (max-width: 768px) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
 }
 
 .statsItem {
@@ -118,6 +130,12 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    @media (max-width: 622px) {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        width: 100%; 
+    }
+
 }
 
 .payedItem {
@@ -131,6 +149,13 @@
     &:hover {
         background-color: #222B39;
     }
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
+    @media (max-width: 622px) {
+        flex-shrink: 0;
+        min-width: 630px;
+    }
 }
 
 .historyText {
@@ -141,7 +166,9 @@
 }
 
 .history {
-    min-width: 596px;
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
 }
 
 .number {
@@ -152,6 +179,18 @@ padding-right: 26px;
 padding-left: 25px;
 height: 70px;
 border-right: 1px solid rgba(54, 65, 82, .3);
+@media (max-width: 1000px) {
+    justify-content: flex-start;
+    min-width: 200px;
+    width: 25%;
+padding-right: 0;
+}
+@media (max-width: 820px) {
+    min-width: 170px;
+}
+@media (max-width: 622px) {
+    width: 180px;
+}
 }
 
 .date {
@@ -161,25 +200,71 @@ border-right: 1px solid rgba(54, 65, 82, .3);
    padding-right: 26px;
    padding-left: 25px;
    height: 70px;
+
    border-right: 1px solid rgba(54, 65, 82, .3);
+   @media (max-width: 1000px) {
+    width: 25%;
+    justify-content: flex-start;
+    min-width: 200px;
+    padding-right: 0;
+}
+@media (max-width: 820px) {
+    min-width: 180px;
+}
+@media (max-width: 622px) {
+    width: 160px;
+}
+
+    
 }
 
 .cost {
     display: flex;
     gap: 12px;
     align-items: center;
+
    padding-right: 43px;
    padding-left: 25px;
    height: 70px;
    border-right: 1px solid rgba(54, 65, 82, .3);
+   @media (max-width: 1000px) {
+    justify-content: flex-start;
+    min-width: 200px;
+    padding-right: 0;
+    width: 25%;
+}
+@media (max-width: 820px) {
+    justify-content: flex-start;
+    padding-left: 25px;
+    width: 120px;
+    min-width: 0;
+}
 }
 
 .status {
     display: flex;
     gap: 12px;
     align-items: center;
-   padding-left: 30px;
+   padding-left: 20px;
+   padding-right: 20px;
    height: 70px;
+   @media (max-width: 1000px) {
+    justify-content: flex-start;
+    padding-left: 25px;
+    min-width: 200px;
+
+    width: 25%;
+    text-align: center;
+    }
+    @media (max-width: 820px) {
+        min-width: 150px;
+    }
+    @media (max-width: 622px) {
+        width: 160px;
+    }
+}
+.animate {
+    position: relative;
 }
 
 .success {
@@ -200,18 +285,44 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     display: flex;
     margin-top: 21px;
     gap: 20px;
+    @media (max-width: 1200px) {
+        flex-wrap: wrap!important; 
+        &:not(:last-child) {
+            gap: 0px;
+        }
+    }
+    @media (max-width: 1000px) {
+        justify-content: space-between;
+        gap: 22px;
+    }
 }
 
-.referal {
- 
+
+.referal, .support {
+    flex: 1;
+
+    max-width: 100%;
 }
+
+.referal{
+    min-width: 350px;
+    @media (max-width: 1200px) {
+        margin-left: 20px;
+    }
+    @media (max-width: 1000px) {
+        margin-top: 24px;
+        margin-left: 0;
+    }
+}
+
 
 .icon {
     transition: all .4s ease;
     cursor: pointer;
     &:hover {
-        color: $primaryTextHover;
+        color: $primaryTextHover; // Ensure you have this variable defined
     }
+    
 }
 
 .refBody {
@@ -224,7 +335,7 @@ border-right: 1px solid rgba(54, 65, 82, .3);
 .refTitle {
     font-size: 15px;
     font-weight: 500;
-    &:not(:first-child){
+    &:not(:first-child) {
         margin-top: 31px;
     }
 }
@@ -237,7 +348,8 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 450px;
+    width: 100%;
+
 }
 
 .url {
@@ -250,6 +362,11 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     margin-top: 19px;
     display: flex;
     gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 480px) {
+        overflow-x: auto;
+    }
 }
 
 .refItem {
@@ -263,13 +380,18 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     font-weight: 700;
     color: #E6E6F8;
     font-size: 20px;
-    line-height: 140%;    
+    line-height: 140%;
     transition: background .4s ease;
     cursor: pointer;
     &:hover {
-        background-color: $primaryTextHover;
+        background-color: $primaryTextHover; // Ensure you have this variable defined
+    }
+    @media (max-width: 480px) {
+        min-width: 100px;
     }
 }
+
+
 
 .support {
     margin-top: 37px;
@@ -279,12 +401,42 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // min-width: 314px;
+    max-width: 314px;
     // padding: 90px 40px 65px 40px;
     padding: 54px 48px 53px 48px;
+    @media (max-width: 1290px) {
+        padding: 54px 5px 53px 5px;  
+    }
     width: 100%;
-    max-width: 314px;
     cursor: pointer;
+    @media (max-width: 1200px) {
+        min-width: 100%;
+        flex-direction: row;
+        gap: 33px;
+        margin-top: 33px;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 26px 6px 26px 35px;  
+    }
+    @media (max-width: 1000px) {
+        margin-top: 61px;
+        min-width: 0;
+        flex-direction: column;
+        flex: 0 0 37%;
+        align-items: center;
+        justify-content: center;
+        width: 0;
+        padding: 54px 5px 53px 5px;  
+        gap: 20px;
+    }
+    @media (max-width: 768px) {
+        margin-top: 21px;
+        flex: 0 0 100%;
+        min-width: 100%;
+        gap: 25px;
+        flex-direction: row;
+        padding: 30px 6px 30px 29px;  
+    }
 }
 
 .supportTitle {
@@ -294,6 +446,27 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     text-align: center;
     color: #fff;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    @media (max-width: 1200px) {
+        margin-top: 0;
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 5px;
+      
+    }
+    @media (max-width: 1000px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    @media (max-width: 768px) {
+        text-align: left;
+        align-items: flex-start;
+        font-size: 14px;
+    }
 }
 
 .supportText {
@@ -302,4 +475,152 @@ border-right: 1px solid rgba(54, 65, 82, .3);
     line-height: 140%;
     font-weight: 500;
     text-align: center;
+    @media (max-width: 1200px) {
+        margin-top: 0;
+        text-align: left;
+    }
+    @media (max-width: 1000px) {
+        text-align: center;
+    }
+    @media (max-width: 768px)  {
+        text-align: left;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .referal {
+        flex: 0 0 60%;
+        min-width: none;
+    }  
+}
+
+@media (max-width: 768px) {
+    .referal {
+        flex: 0 0 100%;
+    } 
+}
+
+.supportWrap {
+    @media (max-width: 1200px) {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+    @media (max-width: 1000px) {
+        flex-direction: column;
+    }
+    @media (max-width: 768px) {
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+.supportIcon {
+    flex-shrink: 0;
+}
+
+.pulsatingCircle {
+    position: absolute;
+    content: "";
+    left: 48%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+  
+    &:before {
+      content: "";
+      position: relative;
+      display: block;
+      width: 300%;
+      height: 300%;
+      box-sizing: border-box;
+      margin-left: -100%;
+      margin-top: -100%;
+      border-radius: 45px;
+      background-color: #3ae19b;
+      animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+  
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #3ae19b;
+      border-radius: 15px;
+      box-shadow: 0 0 8px #0000004d;
+      animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    }
+  }
+
+  .pulsatingCircleIn {
+    position: absolute;
+    content: "";
+    left: 48%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+  
+    &:before {
+      content: "";
+      position: relative;
+      display: block;
+      width: 300%;
+      height: 300%;
+      box-sizing: border-box;
+      margin-left: -100%;
+      margin-top: -100%;
+      border-radius: 45px;
+      background-color: #FF8C00;
+      animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+  
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #FF8C00;
+      border-radius: 15px;
+      box-shadow: 0 0 8px #0000004d;
+      animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    }
+  }
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.03);
+    }
+    
+    80%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse-dot {
+    0% {
+      transform: scale(0.8);
+    }
+    
+    50% {
+      transform: scale(1);
+    }
+    
+    100% {
+      transform: scale(0.8);
+    }
+  }
+  
+
+.iconAnim {
+    flex-shrink: 0;
 }

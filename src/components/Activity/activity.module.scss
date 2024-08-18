@@ -1,7 +1,6 @@
 @import '../../../scss/breakpoints.scss';
 @import '../../../scss/colors.scss';
 @import '../../../scss/mixins.scss';
-@import '../../../scss/typhography.scss';
 
 .activity {
     width: 100%;
@@ -138,21 +137,73 @@
     font-weight: 500;
 }
 
+.animate {
+    position: relative;
+}
+
 .name {
     color: #E6E6F8;
     font-size: 14px;
     font-weight: 500;
 }
 
-@keyframes blink {
-    0%, 100% {
-      opacity: 1;
+.pulsatingCircle {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+  
+    &:before {
+      content: "";
+      position: relative;
+      display: block;
+      width: 300%;
+      height: 300%;
+      box-sizing: border-box;
+      margin-left: -100%;
+      margin-top: -100%;
+      border-radius: 45px;
+      background-color: #3ae19b;
+      animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+  
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #3ae19b;
+      border-radius: 15px;
+      box-shadow: 0 0 8px #0000004d;
+      animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse-dot {
+    0% {
+        transform: scale(1);
     }
     50% {
-      opacity: 0;
+        transform: scale(0.8);
     }
-  }
-
-.online {
-    animation: blink 1.5s infinite;
+    100% {
+        transform: scale(1);
+    }
 }

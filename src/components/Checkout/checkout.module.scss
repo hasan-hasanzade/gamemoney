@@ -29,6 +29,8 @@
     }
 }
 
+
+
 .inputLogin {
     background-color: #1C232D;
     border-radius: 12px;
@@ -42,6 +44,7 @@
         font-weight: 600;
         font-size: 14px;
     }
+    font-family: $fontFamily;
 }
 
 .form {
@@ -100,6 +103,18 @@
     }
 }
 
+.inputState {
+    top: 17px;
+    right: 70px;
+    position: absolute;
+}
+
+.inputStateCondition {
+    top: 17px;
+    right: 20px;
+    position: absolute;
+}
+
 .input {
     background-color: #1C232D;
     border-radius: 12px;
@@ -113,6 +128,7 @@
         font-weight: 600;
         font-size: 14px;
     }
+    font-family: $fontFamily;
 }
 
 
@@ -154,6 +170,37 @@
     z-index: 1;
 }
 
+.iconWrapper {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .iconWrapper.visible {
+    opacity: 1;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-1px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .successIcon {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .errorIcon {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+
 .price {
     background-color: #1C232D;
     border-radius: 12px;
@@ -185,6 +232,29 @@
     gap: 5px;
 }
 
+.loadingIcon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// .inputState {
+//     opacity: 0;
+//     transition: opacity 0.3s ease-in-out;
+//     .visible {
+//         opacity: 1;
+//     }
+// }
+
+
+
 .btns {
     display: flex;
     gap: 5px;
@@ -202,6 +272,7 @@
     @media (max-width: 1400px) {
         padding: 4px 8px;
     }
+    font-family: $fontFamily;
 }
 
 .list {
@@ -316,7 +387,7 @@
     margin-top: 15px;
 }
 
-.payItem{
+.payItem {
     background-color: #1C232D;
     border-radius: 12px;
     padding: 20px 13.5px;
@@ -324,32 +395,37 @@
     transition: border .4s ease;
     cursor: pointer;
     position: relative;
+  
     span {
-        position: absolute;
-        right: -1.3px;
-        top: 0px;
-        border-radius: 4px;
-        background-color: #364152;
-        color: #fff;
-        width: 40px;
-        height: 19px;
-        display: flex;
-        opacity: 0;
-        visibility: hidden;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        transition: all .4s ease;
+      position: absolute;
+      right: -1.3px;
+      top: 0px;
+      border-radius: 4px;
+      background-color: #364152;
+      color: #fff;
+      width: 40px;
+      height: 19px;
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all .4s ease;
     }
-    &:hover {
-        border: 5px solid #364152;
-        background-color: #222B39;
-        span {
-            opacity: 1;
-            visibility: visible;
-        }
+  
+    &:hover,
+    &.active { // Активное состояние
+      border: 5px solid #364152;
+      background-color: #222B39;
+  
+      span {
+        opacity: 1;
+        visibility: visible;
+      }
     }
-}
+  }
+  
 
 .spb {
     width: 80px;
@@ -444,22 +520,19 @@
     align-items: center;
 }
 
+.checkbox:checked + .checkmark {
+    background-color: $bgPrimaryBlue; /* Изменение цвета при активной чекбоксе */
+}
+
 .checkbox:checked + .checkmark::before {
     content: "";
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #1C232D;
-    border-radius: 2px;
-}
-
-.checkbox:checked + .checkmark {
-    background-color: $primaryGreen; /* Синий цвет, как в примере */
-    border-color: $primaryGreen;
-}
-
-.checkbox:checked + .checkmark::before {
-    background-color: #1C232D;
+    width: 18px;
+    height: 18px;
+    background-image: url('../../../public/checkout/checked.png'); /* Указываем путь к вашему PNG изображению */
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px; /* При необходимости, можно изменить */
 }
 
 .container label {
@@ -468,6 +541,8 @@
 
 .submitBtn {
     margin-top: 10px;
+    display: flex;
+    gap: 9px;
     button {
         background-color: $primaryTextHover;
         padding: 15px 0;
@@ -478,15 +553,51 @@
         color: #E6E6F8;
         gap: 12px;
         font-weight: 700;
-        width: 100%;
+        width: 90%;
         font-family: $fontFamily;
         font-size: 20px;
         line-height: 20px;
         text-align: center;
         transition: all .4s ease;
         &:hover {
-            box-shadow: 0px 0px 70px 0px rgba(231, 187, 11, 0.3);
+            box-shadow: 0px 0px 70px 0px rgba(231, 187, 11, 0.3)!important;
+            background-color: $primaryTextHover;
         }
+        &.disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            box-shadow: none;
+            background-color: $primaryTextHover;
+        }
+    }
+}
+
+.customTooltip {
+    color: rgba(230, 230, 248, 0.55)!important;
+    padding: 8px 22px!important;
+    border-radius: 30px!important;
+    font-size: 14px!important;
+    font-weight: 500!important;
+}
+
+.check {
+    background-color: $primaryTextHover;
+    padding: 15px 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E6E6F8;
+    gap: 12px;
+    font-weight: 700;
+    width: 10%;
+    font-family: $fontFamily;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    transition: all .4s ease;
+    &:hover {
+        box-shadow: 0px 0px 70px 0px rgba(231, 187, 11, 0.3);
     }
 }
 

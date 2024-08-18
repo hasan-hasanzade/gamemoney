@@ -14,7 +14,12 @@ const Activity = () => {
         <div className={styles.main}>
           <UsersIcon width={18} height={17}/> Активность
         </div>
-        <div className={styles.count}><ActiveIcon className={styles.online} width={12} height={12}/><span>1516</span></div>
+        <div className={styles.count}>                                
+            <div className={styles.animate}>
+              <ActiveIcon width={12} height={12} className={styles.anim} />
+              <div className={styles.pulsatingCircle}></div>
+            </div><span>1516</span>
+        </div>
       </div>
       <div className={styles.body}>
         {items.map((item, index) => (

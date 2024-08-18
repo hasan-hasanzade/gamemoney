@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import styles from './checkout.module.scss';
 import KeyIcon from '../../../public/checkout/key.svg';
 import UserIcon from '../../../public/checkout/user.svg';
@@ -20,123 +20,314 @@ import WallletIcon from '../../../public/checkout/wallet.svg';
 import DiscountIcon from '../../../public/checkout/discount.svg';
 import CoinsUpIcon from '../../../public/checkout/coins-up.svg';
 import TouchIcon from '../../../public/checkout/touch.svg';
-import LoadingIcon from '../../../public/checkout/loading.svg'
-
+import LoadingIcon from '../../../public/checkout/loading.svg';
+import ErrorIcon from '../../../public/checkout/error.svg';
+import SuccessIcon from '../../../public/checkout/success.svg';
+import SecureIcon from '../../../public/checkout/secure.svg';
+import SpbPopUp from '../SpbPopUp/SpbPopUp';
+import { Tooltip } from 'react-tooltip'
+import Link from 'next/link';
 
 const Checkout = () => {
-    const [inputValue, setInputValue] = React.useState('');
+    const [activeIndex, setActiveIndex] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
 
-    const handleButtonClick = (value:any) => {
-        setInputValue(value);
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (activeIndex === 0) {
+            setShowPopup(true);
+        }
     };
 
-  return (
-    <div className={styles.checkout}>
-        <div className={styles.mobileCommission}>
-            <div className={styles.fireIcon}>
-                <FireIcon width={19} height={23} className={styles.fire}/>
-            </div>
-            <div className={styles.comText}>
-                Комиссия сервиса
-                <span>10%</span>
-            </div>
-        </div>
-      <div className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18}/>Введите данные</div>
-      <form className={styles.form}>
-        <div className={styles.inputWrapper}>
-            <UserIcon className={styles.userIcon} />
-            <input placeholder="Введите логин..." className={styles.inputLogin} />
-            <div className={styles.info}><InfoIcon className={styles.infoIcon} /></div>
-            {/* <LoadingIcon /> */}
-        </div>
-        <div className={styles.wrap}>
-            <div className={styles.mail}><MailIcon className={styles.mailIcon} /><input placeholder="Почта..." type="mail" className={styles.input}/></div>
-            <div className={styles.promo}><PromoIcon className={styles.promoIcon} /><input placeholder="Промокод..." type="text" className={styles.input}/></div>
-        </div>
-        <div className={styles.price}>
-            <div className={styles.inputBody}>
-                <RubIcon width={16} height={20}/>
-                <input 
-                type="text" 
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                />
-            </div>
-           <div className={styles.currencyBody}>
-                <div className={styles.btns}>
-                    <button type='button' className={styles.btn} onClick={() => handleButtonClick('100')}>100₽</button>
-                    <button type='button' className={styles.btn} onClick={() => handleButtonClick('200')}>200₽</button>
-                    <button type='button' className={styles.btn} onClick={() => handleButtonClick('500')}>500₽</button>
-                    <button type='button' className={styles.btn} onClick={() => handleButtonClick('2000')}>2000₽</button>
-                </div>
-                <div className={styles.list}>
-                    <RusFlag width={22} height={22}/>
-                    <div className={styles.currency}>руб.</div>
-                    <ArrRight width={7} height={10}/>
-                </div>
-           </div>
-        </div>
-            <div className={styles.mobileBtns}>
-                <button type='button' className={styles.btn} onClick={() => handleButtonClick('100')}>100₽</button>
-                <button type='button' className={styles.btn} onClick={() => handleButtonClick('200')}>200₽</button>
-                <button type='button' className={styles.btn} onClick={() => handleButtonClick('500')}>500₽</button>
-                <button type='button' className={styles.btn} onClick={() => handleButtonClick('2000')}>2000₽</button>
-            </div>
-        <div className={styles.commission}>
-            <div className={styles.fireIcon}>
-                <FireIcon width={19} height={23} className={styles.fire}/>
-            </div>
-            <div className={styles.comText}>
-                Комиссия сервиса за пополнение 
-                <span>10%</span>
-            </div>
-        </div>
-        <div className={styles.title}><CoinsIcon width={18} height={18}/> Выберите платежную систему</div>
-        <div className={styles.payment}>
-            <div className={styles.types}>
-                <div className={styles.payItem}><SpbIcon className={styles.spb}/><span>2%</span></div>
-                <div className={styles.payItem}><CardIcon className={styles.spb}/><span>2%</span></div>
-                <div className={styles.payItem}><TinkIcon className={styles.spb}/><span>2%</span></div>
-                <div className={styles.payItem}><GPayIcon className={styles.spb}/><span>2%</span></div>
-                <div className={styles.payItem}><YandexIcon className={styles.spb}/><span>2%</span></div>
-            </div>
-        </div>
-        <div className={styles.advantages}>
-            <div className={styles.advItem}>
-                <WallletIcon width={20} height={19}/>
-                <div className={styles.context}>
-                    <div className={styles.advText}>Заплатите</div>
-                    <div className={styles.advPrice}>260.35 ₽</div>
-                </div>
-            </div>
-            <div className={styles.advItem}>
-                <DiscountIcon width={20} height={20}/>
-                    <div className={styles.context}>
-                        <div className={styles.advText}>Комиссия сервиса</div>
-                        <div className={styles.advPrice}>200 ₽</div>
-                    </div>
-            </div>
-            <div className={styles.advItem}>
-                <CoinsUpIcon width={18} height={17} className={styles.coinsUp}/>
-                <div className={styles.context}>
-                    <div className={styles.advTextSh}>Получите на Steam</div>
-                    <div className={styles.advPriceSh}>20.15 ₽</div>
-                </div>
-            </div>
-        </div>
-        <div className={styles.agreement}>
-            <label className={styles.agrBody}>
-                <input className={styles.checkbox} type="checkbox" />
-                <span className={styles.checkmark}></span>
-                Я принимаю условия Пользовательского соглашения и правилами возврата
-            </label>
-        </div>
-        <div className={styles.submitBtn}>
-            <button><TouchIcon width={20} height={27}/> Пополнить <span>260₽</span></button>
-        </div>
-      </form>
-    </div>
-  )
-}
+    const handlePayItemClick = (index) => {
+      setActiveIndex(index);
+    };
+    const [inputValues, setInputValues] = useState({
+        login: '',
+        email: '',
+        promo: '',
+        price: '',
+    });
 
-export default Checkout
+    const [loadingStates, setLoadingStates] = useState({
+        login: false,
+        email: false,
+        promo: false,
+        price: false,
+    });
+
+    const [inputStatuses, setInputStatuses] = useState({
+        login: null,  // null, 'success', 'error'
+        email: null,
+        promo: null,
+        price: null,
+    });
+
+    const handleInputChange = (e, field) => {
+        const value = e.target.value.trim();
+    
+        setInputValues(prevState => ({ ...prevState, [field]: value }));
+    
+        // Set loading state to true when input changes
+        setLoadingStates(prevState => ({ ...prevState, [field]: true }));
+    
+        // Clear previous status while loading
+        setInputStatuses(prevState => ({ ...prevState, [field]: null }));
+    
+        // Simulate loading and validation
+        setTimeout(() => {
+            setLoadingStates(prevState => ({ ...prevState, [field]: false }));
+    
+            if (value === '') {
+                // No status if input is empty
+                setInputStatuses(prevState => ({ ...prevState, [field]: null }));
+            } else if (field === 'login' && value === 'login') {
+                setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
+            } else if (field === 'email' && value === 'email') {
+                setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
+            } else if (field === 'promo' && value === 'promo') {
+                setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
+            } else {
+                setInputStatuses(prevState => ({ ...prevState, [field]: 'error' }));
+            }
+        }, 1000);
+    };
+    
+    
+    
+    // Helper function to validate email (for future use or general validation)
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+    
+
+    const validatePromo = (promo) => {
+        return promo.length > 0; // For example, check if the promo code is not empty
+    };
+    
+
+    const handleButtonClick = (value) => {
+        setInputValues(prevState => ({ ...prevState, price: value }));
+    };
+
+    const renderIcon = (status) => {
+        if (status === 'success') {
+            return <SuccessIcon width={22} height={22} className={`${styles.iconWrapper} ${styles.successIcon} ${styles.visible}`} />;
+        } else if (status === 'error') {
+            return <ErrorIcon width={22} height={22} className={`${styles.iconWrapper} ${styles.errorIcon} ${styles.visible}`} />;
+        }
+        return null;
+    };
+
+    const isButtonDisabled = () => {
+        return Object.values(inputValues).some(value => value.trim() === '');
+    };
+
+    return (
+        <>
+            <div className={styles.checkout}>
+                <div className={styles.mobileCommission}>
+                    <div className={styles.fireIcon}>
+                        <FireIcon width={19} height={23} className={styles.fire}/>
+                    </div>
+                    <div className={styles.comText}>
+                        Комиссия сервиса
+                        <span>10%</span>
+                    </div>
+                </div>
+                <div className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18}/>Введите данные</div>
+                <form className={styles.form}>
+                    <div className={styles.inputWrapper}>
+                        <UserIcon className={styles.userIcon} />
+                        <input 
+                            placeholder="Введите логин..." 
+                            className={styles.inputLogin} 
+                            value={inputValues.login}
+                            onChange={(e) => handleInputChange(e, 'login')}
+                        />
+                        <div className={styles.info}><InfoIcon className={styles.infoIcon} /></div>
+                        <div className={styles.inputState}>
+                            {loadingStates.login && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                            {renderIcon(inputStatuses.login)}
+                        </div>
+                    </div>
+                    <div className={styles.wrap}>
+                        <div className={styles.mail}>
+                            <MailIcon className={styles.mailIcon} />
+                            <input 
+                                placeholder="Почта..." 
+                                type="mail" 
+                                className={styles.input} 
+                                value={inputValues.email}
+                                onChange={(e) => handleInputChange(e, 'email')}
+                            />
+                            <div className={styles.inputStateCondition}>
+                                {loadingStates.email && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                                {renderIcon(inputStatuses.email)}
+                            </div>
+                        </div>
+                        <div className={styles.promo}>
+                            <PromoIcon className={styles.promoIcon} />
+                            <input 
+                                placeholder="Промокод..." 
+                                type="text" 
+                                className={styles.input} 
+                                value={inputValues.promo}
+                                onChange={(e) => handleInputChange(e, 'promo')}
+                            />
+                            <div className={styles.inputStateCondition}>
+                                {loadingStates.promo && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                                {renderIcon(inputStatuses.promo)}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.price}>
+                        <div className={styles.inputBody}>
+                            <RubIcon width={16} height={20}/>
+                            <input 
+                                type="text" 
+                                value={inputValues.price}
+                                onChange={(e) => handleInputChange(e, 'price')}
+                            />
+                        </div>
+                        <div className={styles.currencyBody}>
+                            <div className={styles.btns}>
+                                <button type='button' className={styles.btn} onClick={() => handleButtonClick('100')}>100₽</button>
+                                <button type='button' className={styles.btn} onClick={() => handleButtonClick('200')}>200₽</button>
+                                <button type='button' className={styles.btn} onClick={() => handleButtonClick('500')}>500₽</button>
+                                <button type='button' className={styles.btn} onClick={() => handleButtonClick('2000')}>2000₽</button>
+                            </div>
+                            <div className={styles.list}>
+                                <RusFlag width={22} height={22}/>
+                                <div className={styles.currency}>руб.</div>
+                                <ArrRight width={7} height={10}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.mobileBtns}>
+                        <button type='button' className={styles.btn} onClick={() => handleButtonClick('100')}>100₽</button>
+                        <button type='button' className={styles.btn} onClick={() => handleButtonClick('200')}>200₽</button>
+                        <button type='button' className={styles.btn} onClick={() => handleButtonClick('500')}>500₽</button>
+                        <button type='button' className={styles.btn} onClick={() => handleButtonClick('2000')}>2000₽</button>
+                    </div>
+                    <div className={styles.commission}>
+                        <div className={styles.fireIcon}>
+                            <FireIcon width={19} height={23} className={styles.fire}/>
+                        </div>
+                        <div className={styles.comText}>
+                            Комиссия сервиса за пополнение 
+                            <span>10%</span>
+                        </div>
+                    </div>
+                    <div className={styles.title}><CoinsIcon width={18} height={18}/> Выберите платежную систему</div>
+                    <div className={styles.payment}>
+                        <div className={styles.types}>
+                            <div
+                                className={`${styles.payItem} ${activeIndex === 0 ? styles.active : ''}`}
+                                onClick={() => handlePayItemClick(0)}
+                            >
+                            <SpbIcon className={styles.spb} />
+                            <span>2%</span>
+                            </div>
+                            <div
+                            className={`${styles.payItem} ${activeIndex === 1 ? styles.active : ''}`}
+                            onClick={() => handlePayItemClick(1)}
+                            >
+                            <CardIcon className={styles.spb} />
+                            <span>2%</span>
+                            </div>
+                            <div
+                            className={`${styles.payItem} ${activeIndex === 2 ? styles.active : ''}`}
+                            onClick={() => handlePayItemClick(2)}
+                            >
+                            <TinkIcon className={styles.spb} />
+                            <span>2%</span>
+                            </div>
+                            <div
+                            className={`${styles.payItem} ${activeIndex === 3 ? styles.active : ''}`}
+                            onClick={() => handlePayItemClick(3)}
+                            >
+                            <GPayIcon className={styles.spb} />
+                            <span>2%</span>
+                            </div>
+                            <div
+                            className={`${styles.payItem} ${activeIndex === 4 ? styles.active : ''}`}
+                            onClick={() => handlePayItemClick(4)}
+                            >
+                            <YandexIcon className={styles.spb} />
+                            <span>2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.advantages}>
+                        <div className={styles.advItem}>
+                            <WallletIcon width={20} height={19}/>
+                            <div className={styles.context}>
+                                <div className={styles.advText}>Заплатите</div>
+                                <div className={styles.advPrice}>260.35 ₽</div>
+                            </div>
+                        </div>
+                        <div className={styles.advItem}>
+                            <DiscountIcon width={20} height={20}/>
+                            <div className={styles.context}>
+                                <div className={styles.advText}>Комиссия сервиса</div>
+                                <div className={styles.advPrice}>200 ₽</div>
+                            </div>
+                        </div>
+                        <div className={styles.advItem}>
+                            <CoinsUpIcon width={18} height={17} className={styles.coinsUp}/>
+                            <div className={styles.context}>
+                                <div className={styles.advTextSh}>Получите на Steam</div>
+                                <div className={styles.advPriceSh}>20.15 ₽</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.agreement}>
+                        <label className={styles.agrBody}>
+                            <input className={styles.checkbox} type="checkbox" />
+                            <span className={styles.checkmark}></span>
+                            Я принимаю условия Пользовательского соглашения и правилами возврата
+                        </label>
+                    </div>
+                    <div className={styles.submitBtn}>
+                        <button 
+                            className={isButtonDisabled() ? `${styles.btn} ${styles.disabled}` : styles.btn}
+                            disabled={isButtonDisabled()}
+                            {...(isButtonDisabled() && {
+                                'data-tooltip-id': 'submit-tooltip',
+                                'data-tooltip-content': 'Недоступно',
+                            })} 
+                            onClick={handleSubmit}
+                        >
+                            <TouchIcon width={20} height={27}/> Пополнить <span>260₽</span>
+                        </button>
+                        <Link 
+                            href='#' 
+                            className={styles.check}
+                            data-tooltip-id="secure-tooltip"
+                            data-tooltip-content="Проверить пополнение без оплаты"
+                        >
+                            <SecureIcon width={22} height={22}/>
+                        </Link>
+                        <Tooltip 
+                            id="submit-tooltip" 
+                            className={styles.customTooltip} 
+                            place="bottom-end" 
+                        />
+                        <Tooltip 
+                            id="secure-tooltip" 
+                            className={styles.customTooltip} 
+                            place="bottom-start" 
+                        />
+                    </div>
+                </form>
+                {showPopup && (
+                    <SpbPopUp onClose={() => setShowPopup(false)} />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default Checkout;

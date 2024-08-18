@@ -6,24 +6,31 @@
 .rapid {
     margin-top: 26px;
     padding-bottom: 50px;
+    @media(max-width: 1200px) {
+        display: none;
+    }
 }
 
 .body {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     min-height: 65px;
+    gap: 20px;
 }
 
 .input {
     position: relative;
     display: flex;
     align-items: center;
+    flex-grow: 1; // Добавлено
     input {
         background-color: #1C232D;
         border-radius: 12px;
         padding: 19.8px  20px 19.8px  48px;
-        min-width: 388px;
+        min-width: 200px; // Добавлено
+        max-width: 100%; // Добавлено
+        width: 100%; // Добавлено
         font-weight: 700;
         font-size: 22px;
         color: $primaryText;
@@ -81,7 +88,10 @@
         &:hover {
             box-shadow: 0px 0px 30px 0px rgba(231, 187, 11, 0.3);
         }
+        @media(max-width: 1278px) {
+            padding: 20px 44px;
+        }
     }
-
+      
 }
 

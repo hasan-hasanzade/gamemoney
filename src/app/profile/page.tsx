@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import styles from './profile.module.scss'
 import UserIcon from '../../../public/profile/user.svg';
@@ -16,6 +18,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import Link from 'next/link';
 
 const page = () => {
+    const referralLink = 'https://skrinshoter.ru/sONu9VR0b37';
   return (
     <div className={styles.profile}>
       <div className="container">
@@ -114,7 +117,10 @@ const page = () => {
                                 <div className={styles.historyText}>1500</div>
                             </div>
                             <div className={styles.status}>
-                                <StatSucIcon />
+                                <div className={styles.animate}>
+                                    <StatSucIcon width={12} height={12} className={styles.anim} />
+                                    <div className={styles.pulsatingCircle}></div>
+                                </div>
                                 <div className={styles.success}>Успешно</div>
                             </div>
                         </div>
@@ -132,7 +138,10 @@ const page = () => {
                                 <div className={styles.historyText}>1500</div>
                             </div>
                             <div className={styles.status}>
-                                <StatInProcIcon />
+                                <div className={styles.animate}>
+                                <StatInProcIcon width={12} height={12} className={styles.iconAnim}/>
+                                    <div className={styles.pulsatingCircleIn}></div>
+                                </div>
                                 <div className={styles.inProcess}>Обработка</div>
                             </div>
                         </div>
@@ -150,7 +159,11 @@ const page = () => {
                                 <div className={styles.historyText}>1500</div>
                             </div>
                             <div className={styles.status}>
-                                <StatSucIcon />
+                                <div className={styles.animate}>
+                                    <StatSucIcon width={12} height={12} className={styles.iconAnim}/>
+                                    <div className={styles.pulsatingCircle}></div>
+                                </div>
+                                
                                 <div className={styles.success}>Успешно</div>
                             </div>
                         </div>
@@ -168,7 +181,10 @@ const page = () => {
                                 <div className={styles.historyText}>1500</div>
                             </div>
                             <div className={styles.status}>
-                                <StatSucIcon />
+                                <div className={styles.animate}>
+                                    <StatSucIcon width={12} height={12} className={styles.iconAnim}/>
+                                    <div className={styles.pulsatingCircle}></div>
+                                </div>
                                 <div className={styles.success}>Успешно</div>
                             </div>
                         </div>
@@ -187,7 +203,9 @@ const page = () => {
                         </div>
                         <div className={styles.urlWrap}>
                             <div className={styles.url}>https://skrinshoter.ru/sONu9VR0b37</div>
-                            <CopyIcon className={styles.icon} width={17.22} height={17.81}/>
+                            <CopyToClipboard text={referralLink}>
+                                <CopyIcon className={styles.icon} width={17.22} height={17.81}/>
+                            </CopyToClipboard>
                         </div>
                         <div className={styles.refTitle}>
                             Ваш уровень реф.системы
@@ -209,18 +227,19 @@ const page = () => {
                     </div>
                 </div>
                 <Link href='#' className={styles.support}>
-                        <SupportIcon width={60} height={49}/>
-                        <div className={styles.supportTitle}>
-                        Возникли
-                        <br />
-                        проблемы?
-                        </div>
-                        <div className={styles.supportText}>
-                        О братитесь в техническую поддержку, при обращении укажите номер вашего платежа
+                        <SupportIcon className={styles.supportIcon} width={60} height={49}/>
+                        <div className={styles.supportWrap}>
+                            <div className={styles.supportTitle}>
+                                <span>Возникли</span>                 
+                                <span>проблемы?</span>
+                            </div>
+                            <div className={styles.supportText}>
+                            О братитесь в техническую поддержку, при обращении укажите номер вашего платежа
+                            </div>
                         </div>
                 </Link>
             </div>
-            <RapidPay />
+            <div className={styles.pay}><RapidPay /></div>
         </div>
       </div>
     </div>
