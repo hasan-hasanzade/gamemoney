@@ -1,5 +1,6 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import styles from './checkout.module.scss';
 import KeyIcon from '../../../public/checkout/key.svg';
 import UserIcon from '../../../public/checkout/user.svg';
@@ -25,45 +26,65 @@ import ErrorIcon from '../../../public/checkout/error.svg';
 import SuccessIcon from '../../../public/checkout/success.svg';
 import SecureIcon from '../../../public/checkout/secure.svg';
 import SpbPopUp from '../SpbPopUp/SpbPopUp';
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
 import Link from 'next/link';
 
-const Checkout = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
-    const [showPopup, setShowPopup] = useState(false);
+// Define types for state variables
+type InputValues = {
+    login: string;
+    email: string;
+    promo: string;
+    price: string;
+};
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (activeIndex === 0) {
-            setShowPopup(true);
-        }
-    };
+type LoadingStates = {
+    login: boolean;
+    email: boolean;
+    promo: boolean;
+    price: boolean;
+};
 
-    const handlePayItemClick = (index) => {
-      setActiveIndex(index);
-    };
-    const [inputValues, setInputValues] = useState({
+type InputStatuses = {
+    login: 'success' | 'error' | null;
+    email: 'success' | 'error' | null;
+    promo: 'success' | 'error' | null;
+    price: 'success' | 'error' | null;
+};
+
+const Checkout: React.FC = () => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [showPopup, setShowPopup] = useState<boolean>(false);
+    const [inputValues, setInputValues] = useState<InputValues>({
         login: '',
         email: '',
         promo: '',
         price: '',
     });
-
-    const [loadingStates, setLoadingStates] = useState({
+    const [loadingStates, setLoadingStates] = useState<LoadingStates>({
         login: false,
         email: false,
         promo: false,
         price: false,
     });
-
-    const [inputStatuses, setInputStatuses] = useState({
-        login: null,  // null, 'success', 'error'
+    const [inputStatuses, setInputStatuses] = useState<InputStatuses>({
+        login: null,
         email: null,
         promo: null,
         price: null,
     });
 
-    const handleInputChange = (e, field) => {
+    const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (activeIndex === 0) {
+            setShowPopup(true);
+        }
+    };
+
+    const handlePayItemClick = (index: number) => {
+        setActiveIndex(index);
+    };
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>, field: keyof InputValues) => {
         const value = e.target.value.trim();
     
         setInputValues(prevState => ({ ...prevState, [field]: value }));
@@ -93,25 +114,11 @@ const Checkout = () => {
         }, 1000);
     };
     
-    
-    
-    // Helper function to validate email (for future use or general validation)
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-    
-
-    const validatePromo = (promo) => {
-        return promo.length > 0; // For example, check if the promo code is not empty
-    };
-    
-
-    const handleButtonClick = (value) => {
+    const handleButtonClick = (value: string) => {
         setInputValues(prevState => ({ ...prevState, price: value }));
     };
 
-    const renderIcon = (status) => {
+    const renderIcon = (status: 'success' | 'error' | null) => {
         if (status === 'success') {
             return <SuccessIcon width={22} height={22} className={`${styles.iconWrapper} ${styles.successIcon} ${styles.visible}`} />;
         } else if (status === 'error') {
@@ -157,7 +164,7 @@ const Checkout = () => {
                             <MailIcon className={styles.mailIcon} />
                             <input 
                                 placeholder="Почта..." 
-                                type="mail" 
+                                type="email" 
                                 className={styles.input} 
                                 value={inputValues.email}
                                 onChange={(e) => handleInputChange(e, 'email')}
