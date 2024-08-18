@@ -18,7 +18,11 @@ import MirIcon from '../../../public/popup/mir.svg';
 import MasterIcon from '../../../public/popup/master.svg';
 import CloseIcon from '../../../public/popup/close.svg';
 
-const SpbPopUp = ({ onClose }) => { // Accept onClose prop to close the popup
+interface SpbPopUpProps {
+  onClose: () => void;
+}
+
+const SpbPopUp: React.FC<SpbPopUpProps> = ({ onClose }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.popup}>
@@ -29,7 +33,7 @@ const SpbPopUp = ({ onClose }) => { // Accept onClose prop to close the popup
         <div className={styles.body}>
           <div className={styles.qr}>
             <div className={styles.image}>
-              <Image src='/popup/qr.png' width={174.5} height={173.5} quality={100} alt='qr' />
+              <Image src='/popup/qr.png' width={174.5} height={173.5} quality={100} alt='QR Code' />
             </div>
             <ul className={styles.explanation}>
               <li className={styles.expItem}>Откройте приложение Вашего банка;</li>
