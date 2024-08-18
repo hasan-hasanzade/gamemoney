@@ -328,12 +328,12 @@ const Checkout: React.FC = () => {
                         <Tooltip 
                             id="submit-tooltip" 
                             className={styles.customTooltip} 
-                            place="bottom-end" 
+                            place="bottom-end" noArrow
                         />
                         <Tooltip 
                             id="secure-tooltip" 
                             className={styles.customTooltip} 
-                            place="bottom-start" 
+                            place="bottom-start" noArrow
                         />
                     </div>
                 </form>
