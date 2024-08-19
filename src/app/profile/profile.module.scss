@@ -265,6 +265,9 @@ padding-right: 0;
 }
 .animate {
     position: relative;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
 }
 
 .success {
@@ -523,11 +526,11 @@ padding-right: 0;
 .pulsatingCircle {
     position: absolute;
     content: "";
-    left: 48%;
-    top: 49%;
+    left: 47%;
+    top: 61%;
     transform: translate(-50%, -50%);
-    width: 7px;
-    height: 7px;
+    width: 5px;
+    height: 5px;
   
     &:before {
       content: "";
@@ -561,11 +564,11 @@ padding-right: 0;
   .pulsatingCircleIn {
     position: absolute;
     content: "";
-    left: 48%;
-    top: 49%;
+    left: 47%;
+    top: 61%;
     transform: translate(-50%, -50%);
-    width: 7px;
-    height: 7px;
+    width: 5px;
+    height: 5px;
   
     &:before {
       content: "";

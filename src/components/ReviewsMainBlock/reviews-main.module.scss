@@ -13,6 +13,7 @@
     gap: 12px;
 }
 .list {
+    border-radius: 12px;
     .item {
         display: flex;
         align-items: center;
@@ -28,6 +29,10 @@
         &:nth-child(even) {
             background-color: #1C232D;
         }
+    }
+    transition: box-shadow .4s ease;
+    &:hover {
+        box-shadow: 5px 2px 0px 2px #364152;
     }
 }
 

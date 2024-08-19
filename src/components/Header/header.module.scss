@@ -6,6 +6,10 @@
 .header {
 padding: 46px 0;
 
+@media (max-width: 480px) {
+    padding: 23px 0 18px 0;
+}
+
 }
 
 .authBtn {
@@ -39,9 +43,18 @@ padding: 46px 0;
 }
 
 .logoLink {
+    position: relative;
+    display: inline-block;
 
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        bottom: -50px;
+        left: -20px;
+        right: -50px;
+    }
 }
-
 .authBody {
     display: flex;
     align-items: center;

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './banner.module.scss';
 import WalletIcon from '../../../public/banner/wallet.svg';
 import UsersIcon from '../../../public/banner/group.svg';
-import TinkIcon from '../../../public/banner/tinkoff.svg';
+import TinkIcon from '../../../public/banner/t-bank.svg';
 import CardIcon from '../../../public/banner/bank-card.svg';
 import CountUp from 'react-countup';
 import Image from 'next/image';
@@ -41,7 +41,7 @@ const Banner = () => {
             <Link href='#' className={styles.blueBanner}>
                 <div className={styles.inner}>
                     <div className={styles.lSide}>
-                        <TinkIcon width={176} height={59}/>
+                        <TinkIcon width={80} height={49}/>
                         <div className={styles.title}>Меняйте правила игры</div>
                         <div className={styles.desc}>С кредиткой ALL Games</div>
                     </div>

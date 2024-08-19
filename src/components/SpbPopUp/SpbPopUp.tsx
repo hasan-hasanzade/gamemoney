@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './popup.module.scss';
 import Image from 'next/image';
 import SpbIcon from '../../../public/popup/sbp.svg';
 import InProcessIcon from '../../../public/popup/inProcess.svg';
+import InProcessIconMob from '../../../public/popup/inProcess.svg';
 import SearchIcon from '../../../public/popup/search.svg';
 import SberIcon from '../../../public/popup/sber.svg';
 import TinIcon from '../../../public/popup/tin.svg';
@@ -17,15 +18,53 @@ import VisaIcon from '../../../public/popup/visa.svg';
 import MirIcon from '../../../public/popup/mir.svg';
 import MasterIcon from '../../../public/popup/master.svg';
 import CloseIcon from '../../../public/popup/close.svg';
+import CloseIconMobile from '../../../public/popup/close.svg';
 
 interface SpbPopUpProps {
   onClose: () => void;
 }
 
 const SpbPopUp: React.FC<SpbPopUpProps> = ({ onClose }) => {
+  const [activeBank, setActiveBank] = useState<string | null>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  const banks = [
+    { id: 'sber', icon: <SberIcon width={20} height={20} />, name: 'Сбербанк' },
+    { id: 'tin', icon: <TinIcon width={20} height={20} />, name: 'Т-Банк' },
+    { id: 'vtb', icon: <VtbIcon width={20} height={20} />, name: 'ВТБ' },
+    { id: 'alfa', icon: <AlfaIcon width={20} height={20} />, name: 'Альфа-банк' },
+    { id: 'rayf', icon: <RayfIcon width={20} height={20} />, name: 'Райффайзенбанк' },
+    { id: 'open', icon: <OpenIcon width={20} height={20} />, name: 'Открытие' },
+    { id: 'gaz', icon: <GazIcon width={20} height={20} />, name: 'Газпромбанк' },
+    { id: 'sov', icon: <SovIcon width={20} height={20} />, name: 'Совкомбанк' },
+  ];
+
+  const handleBankClick = (id: string) => {
+    setActiveBank(id);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles.overlay}>
-      <div className={styles.popup}>
+      <div className={styles.popup} ref={popupRef}>
+        <div className={styles.mobileBack}>
+          <div onClick={onClose} className={styles.mobileBackWrap}>
+            <span>Назад</span>
+            <CloseIconMobile width={18} height={18} className={styles.closeMobile} />
+          </div>
+        </div>
         <div className={styles.spb}>
           <div className={styles.iconWrap}><SpbIcon className={styles.spbIcon} width={80} height={40} /></div>
           <CloseIcon width={18} height={18} className={styles.close} onClick={onClose} />
@@ -42,7 +81,7 @@ const SpbPopUp: React.FC<SpbPopUpProps> = ({ onClose }) => {
               <li className={styles.expItem}>Ожидайте статуса операции</li>
             </ul>
             <div className={styles.status}>
-              <InProcessIcon width={65} height={57} />
+              <InProcessIcon className={styles.inProcessIcon} width={65} height={57} />
             </div>
           </div>
           <div className={styles.wrap}>
@@ -55,16 +94,18 @@ const SpbPopUp: React.FC<SpbPopUpProps> = ({ onClose }) => {
                 <input placeholder='Поиск...' type="text" />
               </div>
               <ul className={styles.bankList}>
-                <li className={styles.bankItem}><SberIcon width={20} height={20} />Сбербанк</li>
-                <li className={styles.bankItem}><TinIcon width={20} height={20} />Т-Банк</li>
-                <li className={styles.bankItem}><VtbIcon width={20} height={20} />ВТБ</li>
-                <li className={styles.bankItem}><AlfaIcon width={20} height={20} />Альфа-банк</li>
-                <li className={styles.bankItem}><RayfIcon width={20} height={20} />Райффайзенбанк</li>
-                <li className={styles.bankItem}><OpenIcon width={20} height={20} />Открытие</li>
-                <li className={styles.bankItem}><GazIcon width={20} height={20} />Газпромбанк</li>
-                <li className={styles.bankItem}><SovIcon width={20} height={20} />Совкомбанк</li>
-                <li className={styles.bankItem}><SovIcon width={20} height={20} />Совкомбанк</li>
-                <li className={styles.bankItem}><SovIcon width={20} height={20} />Совкомбанк</li>
+                {banks.map(bank => (
+                  <li 
+                    key={bank.id} 
+                    className={`${styles.bankItem} ${activeBank === bank.id ? styles.active : ''}`}
+                    onClick={() => handleBankClick(bank.id)}
+                  >
+                    {bank.icon}{bank.name}
+                  </li>
+                ))}
+                <div className={styles.mobileProcess}>
+                  <InProcessIconMob className={styles.inMobile} width={65} height={56}/>
+                </div>
               </ul>
             </div>
             <div className={styles.btn}>

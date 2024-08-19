@@ -1,4 +1,5 @@
 @import '../../../scss/colors.scss';
+@import '../../../scss/typhography.scss';
 
 .accordion {
   background-color: #1C232D;
@@ -43,9 +44,14 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+    font-family: $fontFamily;
     text-align: left;
     cursor: pointer;
     min-height: 64px;
+
+    @media (max-width: 480px) {
+      max-width: none;
+    }
  
   }
 
@@ -68,5 +74,6 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 140%;
+    font-family: $fontFamily;
   }
 }

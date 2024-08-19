@@ -24,6 +24,11 @@
     position: relative;
     z-index: 1001; // Убедитесь, что попап находится над затемнением
     box-shadow: 1px 0px 35px 0px rgba(231, 187, 11, 0.30);
+    @media (max-width: 480px) {
+        width: 100%;
+        border-radius: 0;
+        height: 100vh;
+    }
 }
 
 .spb {
@@ -49,6 +54,9 @@
     top: 16px;
     right: 16px;
     cursor: pointer;
+    @media (max-width: 480px) {
+        display: none;
+    }
 }
 
 .image {
@@ -58,15 +66,25 @@
 .body {
     display: flex;
     width: 100%;
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
 }
 
 .qr {
     padding-top: 98px;
     width: 50%;
+    @media (max-width: 480px) {
+        width: 100%;
+        z-index: 1000;
+    }
 }
 
 .wrap {
     width: 50%;
+    @media (max-width: 480px) {
+        width: 100%;
+    }
 }
 
 .banks {
@@ -74,6 +92,12 @@
     background-color: #EEF5FF;
     border-radius: 12px;
     padding-left: 22px;
+    @media (max-width: 480px) {
+        padding-top: 45px;
+        margin-top: -52px;
+        padding-left: 55px;
+        padding-right: 45px;
+    }
 }
 
 .explanation {
@@ -82,6 +106,9 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    @media (max-width: 480px) {
+        display: none;
+    }
 }
 
 .expItem {
@@ -122,7 +149,8 @@
     input {
         background-color: transparent;
         padding-left: 20px;
-
+        font-size: 12px;
+        font-weight: 500;
         &::placeholder {
             color: #BACBE7;
             font-family: $fontFamily;
@@ -147,6 +175,10 @@
     overflow-y: auto;
     margin-right: 20px;
     padding-bottom: 30px;
+    @media (max-width: 480px) {
+        height: 170px;
+    }
+    position: relative!important;
 }
 
 .bankItem {
@@ -184,6 +216,16 @@
     }
 }
 
+.active {
+    padding-left: 10px!important;
+
+    &::before {
+        width: 5px;
+        background-color: $primaryTextHover;
+    }
+}
+
+
 .btn {
     margin-top: -20px;
     position: relative;
@@ -214,4 +256,62 @@
     justify-content: center;
     gap: 25px;
     padding-bottom: 31px;
+}
+
+.inProcessIcon {
+    animation: spin 1s linear infinite;
+    @media (max-width: 480px) {
+        display: none;
+    }
+}
+
+.inMobile{
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mobileBack {
+    display: none;
+    @media (max-width: 480px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 55px;
+        background-color: #EEF5FF;
+        width: 100%;
+        box-shadow: 1px 0px 15px 0px #C5D4EB;
+    }
+}
+.mobileBackWrap {
+    @media (max-width: 480px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: inherit;
+        height: inherit;
+    }
+    color: #C5D4EB;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: $fontFamily;
+}
+
+.mobileProcess {
+    display: none;
+    @media (max-width: 480px) {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 20px;
+        right: 40px;
+    }
 }

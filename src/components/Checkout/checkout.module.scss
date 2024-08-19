@@ -41,7 +41,7 @@
     width: 100%;
     &::placeholder {
         color: $primaryText;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 14px;
         font-family: $fontFamily;
     }
@@ -126,7 +126,7 @@
     position: relative;
     &::placeholder {
         color: $primaryText;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 14px;
     }
     font-family: $fontFamily;
@@ -214,10 +214,11 @@
         margin-left: 15px;
         background-color: inherit;
         color: inherit;
+        padding: 18px 0;
         width: 100%;
-        @media (max-width: 1400px){
-            width: 50px;
-        }
+        // @media (max-width: 1400px){
+        //     width: 50px;
+        // }
         font-weight: 800;
         font-size: 14px;
         font-family: $fontFamily;
@@ -226,6 +227,8 @@
 
 .inputBody {
     display: flex;
+    align-items: center;
+    flex: 1 1 auto;
 }
 .currencyBody {
     display: flex;
@@ -311,6 +314,7 @@
     align-items: center;
     @media (max-width: 500px) {
         display: flex;
+        margin-top: 0px!important;
     }
 }
 
@@ -354,19 +358,19 @@
       transform: scale(1) translateY(0);
     }
     20% {
-      opacity: 0.6;
+      opacity: 0.9;
       transform: scale(1.02) translateY(-2px);
     }
     40% {
-      opacity: 0.8;
+      opacity: 0.9;
       transform: scale(0.98) translateY(1px);
     }
     60% {
-      opacity: 0.7;
+      opacity: 0.9;
       transform: scale(1.01) translateY(-1px);
     }
     80% {
-      opacity: 0.85;
+      opacity: 0.9;
       transform: scale(1) translateY(0);
     }
     100% {
@@ -455,11 +459,15 @@
 }
 
 .advPrice {
-    flex: 1 1 auto;
+    // flex: 1 1 auto;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.dots {
     border-bottom: 1px dotted $primaryText;
+    flex: 1 1 auto;
 }
 
 .advTextSh {
@@ -474,8 +482,7 @@
     color: $primaryGreen;
     font-size: 15px;
     font-weight: 700;
-    border-bottom: 1px dotted $primaryText;
-    flex: 1 1 auto;
+    // flex: 1 1 auto;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -626,7 +633,6 @@
     .inputWrapper,
     .wrap,
     .price,
-    .currencyBody,
     .payment,
     .advantages,
     .agreement,
@@ -664,7 +670,7 @@
         display: none;
     }
     .mobileBtns {
-        margin-top: 25px;
+        // margin-top: 25px;
         display: flex;
         justify-content: space-between;
         gap: 6px;

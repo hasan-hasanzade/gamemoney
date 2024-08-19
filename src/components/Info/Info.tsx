@@ -11,6 +11,7 @@ import ClickIcon from '../../../public/info/click.svg';
 import TinkIcon from '../../../public/info/tinkof.svg';
 import StarIcon from '../../../public/info/star.svg';
 import ReviewsMainBlock from '../ReviewsMainBlock/ReviewsMainBlock';
+import Link from 'next/link';
 
 
 const Info = () => {
@@ -98,7 +99,7 @@ const Info = () => {
                             <span>Использование Gamemoney</span> - отличное решение, которое позволит сэкономить время, и пополнять баланс в один клик. Для удобства, мы предлагаем использование разных способов оплаты с быстрым зачислением денег. При возникновении сложностей с переводом денег, воспользуйтесь консультацией службы поддержки.
                         </div>
                         <div className={styles.btn}>
-                            <button><ClickIcon className={styles.clickIcon} width={20} height={27}/>Пополнить</button>
+                            <Link href='#form'><ClickIcon className={styles.clickIcon} width={20} height={27}/>Пополнить</Link>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import styles from './checkout.module.scss';
 import KeyIcon from '../../../public/checkout/key.svg';
 import UserIcon from '../../../public/checkout/user.svg';
@@ -29,7 +27,6 @@ import SpbPopUp from '../SpbPopUp/SpbPopUp';
 import { Tooltip } from 'react-tooltip';
 import Link from 'next/link';
 
-// Define types for state variables
 type InputValues = {
     login: string;
     email: string;
@@ -76,7 +73,7 @@ const Checkout: React.FC = () => {
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (activeIndex === 0) {
-            setShowPopup(true);
+            handlePopUpOpen();
         }
     };
 
@@ -86,42 +83,32 @@ const Checkout: React.FC = () => {
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>, field: keyof InputValues) => {
         let value = e.target.value.trim();
-    
+
         if (field === 'price') {
-            // Разрешаем ввод только чисел
             if (!/^\d*$/.test(value)) {
-                return; // Если введено не число, прекращаем выполнение
+                return;
             }
         }
-    
+
         setInputValues(prevState => ({ ...prevState, [field]: value }));
-    
-        // Set loading state to true when input changes
         setLoadingStates(prevState => ({ ...prevState, [field]: true }));
-    
-        // Clear previous status while loading
         setInputStatuses(prevState => ({ ...prevState, [field]: null }));
-    
-        // Simulate loading and validation
+
         setTimeout(() => {
             setLoadingStates(prevState => ({ ...prevState, [field]: false }));
-    
+
             if (value === '') {
-                // No status if input is empty
                 setInputStatuses(prevState => ({ ...prevState, [field]: null }));
             } else if (field === 'login' && value === 'login') {
                 setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
             } else if (field === 'email' && value === 'email') {
-                setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
-            } else if (field === 'promo' && value === 'promo') {
                 setInputStatuses(prevState => ({ ...prevState, [field]: 'success' }));
             } else {
                 setInputStatuses(prevState => ({ ...prevState, [field]: 'error' }));
             }
         }, 1000);
     };
-    
-    
+
     const handleButtonClick = (value: string) => {
         setInputValues(prevState => ({ ...prevState, price: value }));
     };
@@ -136,7 +123,28 @@ const Checkout: React.FC = () => {
     };
 
     const isButtonDisabled = () => {
-        return Object.values(inputValues).some(value => value.trim() === '');
+        const { login, email, price } = inputValues;
+        return login.trim() === '' || email.trim() === '' || price.trim() === '';
+    };
+
+    const handlePopUpOpen = () => {
+        setShowPopup(true);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const handlePopUpClose = () => {
+        setShowPopup(false);
+        document.body.style.overflow = '';
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, nextInputId: string) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const nextInput = document.getElementById(nextInputId) as HTMLInputElement;
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
     };
 
     return (
@@ -151,15 +159,17 @@ const Checkout: React.FC = () => {
                         <span>10%</span>
                     </div>
                 </div>
-                <div className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18}/>Введите данные</div>
+                <div id='form' className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18}/>Введите данные</div>
                 <form className={styles.form}>
                     <div className={styles.inputWrapper}>
                         <UserIcon className={styles.userIcon} />
                         <input 
+                            id="login"
                             placeholder="Введите логин..." 
                             className={styles.inputLogin} 
                             value={inputValues.login}
                             onChange={(e) => handleInputChange(e, 'login')}
+                            onKeyDown={(e) => handleKeyDown(e, 'email')}
                         />
                         <Link href='/faq' className={styles.info}><InfoIcon className={styles.infoIcon} /></Link>
                         <div className={styles.inputState}>
@@ -171,11 +181,13 @@ const Checkout: React.FC = () => {
                         <div className={styles.mail}>
                             <MailIcon className={styles.mailIcon} />
                             <input 
+                                id="email"
                                 placeholder="Почта..." 
                                 type="email" 
                                 className={styles.input} 
                                 value={inputValues.email}
                                 onChange={(e) => handleInputChange(e, 'email')}
+                                onKeyDown={(e) => handleKeyDown(e, 'promo')}
                             />
                             <div className={styles.inputStateCondition}>
                                 {loadingStates.email && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
@@ -185,11 +197,13 @@ const Checkout: React.FC = () => {
                         <div className={styles.promo}>
                             <PromoIcon className={styles.promoIcon} />
                             <input 
+                                id="promo"
                                 placeholder="Промокод..." 
                                 type="text" 
                                 className={styles.input} 
                                 value={inputValues.promo}
                                 onChange={(e) => handleInputChange(e, 'promo')}
+                                onKeyDown={(e) => handleKeyDown(e, 'price')}
                             />
                             <div className={styles.inputStateCondition}>
                                 {loadingStates.promo && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
@@ -201,6 +215,7 @@ const Checkout: React.FC = () => {
                         <div className={styles.inputBody}>
                             <RubIcon width={16} height={20}/>
                             <input 
+                                id="price"
                                 type="text" 
                                 value={inputValues.price}
                                 onChange={(e) => handleInputChange(e, 'price')}
@@ -280,6 +295,7 @@ const Checkout: React.FC = () => {
                             <WallletIcon width={20} height={19}/>
                             <div className={styles.context}>
                                 <div className={styles.advText}>Заплатите</div>
+                                <div className={styles.dots}></div>
                                 <div className={styles.advPrice}>260.35 ₽</div>
                             </div>
                         </div>
@@ -287,6 +303,7 @@ const Checkout: React.FC = () => {
                             <DiscountIcon width={20} height={20}/>
                             <div className={styles.context}>
                                 <div className={styles.advText}>Комиссия сервиса</div>
+                                <div className={styles.dots}></div>
                                 <div className={styles.advPrice}>200 ₽</div>
                             </div>
                         </div>
@@ -294,6 +311,7 @@ const Checkout: React.FC = () => {
                             <CoinsUpIcon width={18} height={17} className={styles.coinsUp}/>
                             <div className={styles.context}>
                                 <div className={styles.advTextSh}>Получите на Steam</div>
+                                <div className={styles.dots}></div>
                                 <div className={styles.advPriceSh}>20.15 ₽</div>
                             </div>
                         </div>
@@ -338,7 +356,7 @@ const Checkout: React.FC = () => {
                     </div>
                 </form>
                 {showPopup && (
-                    <SpbPopUp onClose={() => setShowPopup(false)} />
+                    <SpbPopUp onClose={handlePopUpClose} />
                 )}
             </div>
         </>
