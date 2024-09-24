@@ -11,9 +11,6 @@
     position: relative;
 }
 
-// .keyIcon {
-//     margin-right: 14px;
-// }
 
 .title {
     display: flex;
@@ -528,7 +525,7 @@
 }
 
 .checkbox:checked + .checkmark {
-    background-color: $bgPrimaryBlue; /* Изменение цвета при активной чекбоксе */
+    background-color: $bgPrimaryBlue;
 }
 
 .checkbox:checked + .checkmark::before {
@@ -536,10 +533,10 @@
     position: absolute;
     width: 18px;
     height: 18px;
-    background-image: url('../../../public/checkout/checked.png'); /* Указываем путь к вашему PNG изображению */
+    background-image: url('../../../public/checkout/checked.png');
     background-size: cover;
     background-position: center;
-    border-radius: 5px; /* При необходимости, можно изменить */
+    border-radius: 5px;
 }
 
 .container label {
