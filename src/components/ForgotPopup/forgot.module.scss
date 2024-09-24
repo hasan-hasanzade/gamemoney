@@ -14,10 +14,6 @@
   padding: 50px;
   z-index: 1001;
   width: 410px;
-  @media(max-width: 480px) {
-    width: 100%;
-    padding: 25px;
-  }
 }
 
 .overlay {
@@ -38,9 +34,6 @@
     font-size: 16px;
     border-radius: 12px;
     text-align: center;
-    @media(max-width: 480px) {
-      padding: 17px 30px;
-    }
 }
 
 .title {
@@ -49,9 +42,6 @@
    font-size: 32px;
    line-height: 32px;
    color: #e7bb0b; 
-   @media(max-width: 480px) {
-    font-size: 25px;
-  }
 }
 
 .subtitle {
@@ -70,10 +60,6 @@
       height: .5px;
       background-color: #C5D4EB; 
     }
-    @media(max-width: 480px) {
-      font-size: 20px;
-      width: 250px;
-    }
   }
 
 .input {
@@ -81,7 +67,7 @@
   border-radius: 12px;
   width: 100%;
   padding: 18px 20px 18px 20px;
-  color: #A0B3D0;
+  color: $primaryText;
   font-weight: 500;
   position: relative;
   &::placeholder {
@@ -115,10 +101,6 @@
     &:hover {
         color: #98ACCB;
     }
-    @media(max-width: 480px) {
-      top: -10px;
-      right: -10px;
-    }
 }
 
 .mailIcon,.keyIcon {
@@ -131,13 +113,10 @@
 }
 
 .actions {
-    margin-top: 22px;
+    margin-top: 28px;
     display: flex;
     align-items: center;
     gap: 17px;
-    @media(max-width: 480px) {
-      justify-content: space-between;
-    }
 }
 
 .submitBtn {
@@ -153,19 +132,12 @@
     &:hover {
         background-color: #E1B400;
     }
-    @media(max-width: 480px) {
-      font-size: 18px;
-  }
 }
 
 .options {
     margin-top: 25px;
     display: flex;
     justify-content: space-between;
-    @media(max-width: 380px) {
-      flex-wrap: wrap;
-      gap: 10px;
-    }
 }
 
 .forgot, .register {
