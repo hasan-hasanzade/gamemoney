@@ -37,6 +37,7 @@ const RegisterPopup = () => {
         setCookie("accessToken", token.data.accessToken, 30)
         setIsOpen(false)
         setIsSuccess(true)
+        location.reload()
     }
     const handleRegister = async (e: any) => {
         e.preventDefault()

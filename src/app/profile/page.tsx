@@ -35,14 +35,14 @@ const page = () => {
                     <div className={styles.profileInner}>
                         <div className={styles.account}>
                             <div className={styles.image}>
-                                <Image src='/header/profile.jpg' width={76} height={76} alt='пользователь' />
+                                <Image src={user.avatar || '/header/profile.jpg'} width={76} height={76} alt='пользователь' />
                             </div>
                             <div className={styles.profileInfo}>
                                 <div className={styles.name}>
                                     {user?.name} {user?.lastName}
                                 </div>
                                 <div className={styles.vk}>
-                                    https://vk.com/kombarov1991
+                                    {user.vkLink || user.tgLink}
                                 </div>
                             </div>
                         </div>

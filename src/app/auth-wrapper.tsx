@@ -49,7 +49,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }
     useEffect(() => {
-        const token = getCookie('accessToken');
         checkAuthUser()
     }, []);
     const value = {

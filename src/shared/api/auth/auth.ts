@@ -23,6 +23,11 @@ interface ILoginRequest {
 
 
 
+export async function setOffline() {
+    const token = getCookie("accessToken")
+    await instance.get('/auth/offline', { headers: { Authorization: `Bearer ${token}` } })
+}
+
 export async function getMe(): Promise<AxiosResponse<IUser>> {
     const token = getCookie("accessToken")
     const user = await instance.get('/auth/getMe', { headers: { Authorization: `Bearer ${token}` } })

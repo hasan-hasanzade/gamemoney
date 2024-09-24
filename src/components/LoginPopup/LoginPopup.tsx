@@ -13,9 +13,9 @@ import { useRegisterPopupStore } from '@/shared/store/registerPopupStore';
 import { login, register } from '@/shared/api/auth/auth';
 import { setCookie } from '@/lib/utils';
 import { LoginButton } from '@telegram-auth/react';
-import VKID from '@/shared/config/vkInstance';
 
 
+import * as VKID from '@vkid/sdk';
 
 const LoginPopup = () => {
     const { setIsOpen } = useLoginPopupStore()
@@ -29,17 +29,25 @@ const LoginPopup = () => {
     }
 
     useEffect(() => {
-        // const oneTap = new VKID.OneTap();
-        // const container = document.getElementById('VkIdSdkOneTap');
-        //
-        // // Проверка наличия кнопки в разметке.
-        // if (container) {
-        //     // Отрисовка кнопки в контейнере с именем приложения APP_NAME, светлой темой и на русском языке.
-        //     oneTap.render({ container: container, scheme: VKID.Scheme.DARK, lang: VKID.Languages.RUS })
-        //         .on(VKID.WidgetEvents.ERROR, console.log('error')); // handleError — какой-либо обработчик ошибки.
-        // } else {
-        //     console.log('not found')
-        // }
+        VKID.Config.init({
+            app: 52350309, // Идентификатор приложения.
+            redirectUrl: "https://google.com", // Адрес для перехода после авторизации.
+            state: 'dj29fnsadjsd82', // Произвольная строка состояния приложения.
+            codeVerifier: 'FGH767Gd65', // Верификатор в виде случайной строки. Обеспечивает защиту передаваемых данных.
+            scope: 'email phone password', // Список прав доступа, которые нужны приложению.
+            mode: VKID.ConfigAuthMode.InNewTab// По умолчанию авторизация открывается в новой вкладке.
+        });
+        const oneTap = new VKID.OneTap();
+        const container = document.getElementById('VkIdSdkOneTap');
+
+        // Проверка наличия кнопки в разметке.
+        if (container) {
+            // Отрисовка кнопки в контейнере с именем приложения APP_NAME, светлой темой и на русском языке.
+            oneTap.render({ container: container, scheme: VKID.Scheme.DARK, lang: VKID.Languages.RUS })
+                .on(VKID.WidgetEvents.ERROR, console.log('error')); // handleError — какой-либо обработчик ошибки.
+        } else {
+            console.log('not found')
+        }
     }, [])
 
     const tgAuth = async (data: any) => {
@@ -61,6 +69,7 @@ const LoginPopup = () => {
             setIsOpen(false)
             setIsSuccess(true)
         }
+        location.reload()
     }
 
     return (
@@ -100,7 +109,7 @@ const LoginPopup = () => {
                                 Войти
                             </button>
                         </div>
-                        {/* <div id="VkIdSdkOneTap"></div> */}
+                        <div id="VkIdSdkOneTap"></div>
                         <LoginButton botUsername='isapchatbot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
                         <div className={styles.options}>
                             <Link href='#' className={styles.forgot}>
