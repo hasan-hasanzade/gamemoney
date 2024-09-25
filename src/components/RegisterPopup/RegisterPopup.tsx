@@ -98,7 +98,7 @@ const RegisterPopup = () => {
                                 </button>
                             </div>
                         </div>
-                        <LoginButton botUsername='isapchatbot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
+                        <LoginButton botUsername='wyCNEcDbTASyDgJ_bot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
                         <div className={styles.options}>
                             <Link href='#' className={styles.forgot}>
                                 <SearchIcon className={styles.optionIcon} width={21} height={21} />
