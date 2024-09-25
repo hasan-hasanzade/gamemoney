@@ -26,6 +26,8 @@ import SecureIcon from '../../../public/checkout/secure.svg';
 import SpbPopUp from '../SpbPopUp/SpbPopUp';
 import { Tooltip } from 'react-tooltip';
 import Link from 'next/link';
+import { makePayment } from '@/shared/api/payment/payment';
+import { useRouter } from 'next/navigation'
 
 type InputValues = {
     login: string;
@@ -51,6 +53,7 @@ type InputStatuses = {
 const Checkout: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [showPopup, setShowPopup] = useState<boolean>(false);
+    const router = useRouter()
     const [inputValues, setInputValues] = useState<InputValues>({
         login: '',
         email: '',
@@ -70,11 +73,19 @@ const Checkout: React.FC = () => {
         price: null,
     });
 
-    const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    const handlePayment = async (e: any) => {
+        e.preventDefault()
+        const link = await makePayment(parseInt(inputValues.price))
+
+    }
+
+    const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (activeIndex === 0) {
             handlePopUpOpen();
         }
+        const link = await makePayment(parseInt(inputValues.price) * 100)
+        router.replace(link.data)
     };
 
     const handlePayItemClick = (index: number) => {
@@ -152,71 +163,71 @@ const Checkout: React.FC = () => {
             <div className={styles.checkout}>
                 <div className={styles.mobileCommission}>
                     <div className={styles.fireIcon}>
-                        <FireIcon width={19} height={23} className={styles.fire}/>
+                        <FireIcon width={19} height={23} className={styles.fire} />
                     </div>
                     <div className={styles.comText}>
                         Комиссия сервиса
                         <span>10%</span>
                     </div>
                 </div>
-                <div id='form' className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18}/>Введите данные</div>
+                <div id='form' className={styles.title}><KeyIcon className={styles.keyIcon} width={18} height={18} />Введите данные</div>
                 <form className={styles.form}>
                     <div className={styles.inputWrapper}>
                         <UserIcon className={styles.userIcon} />
-                        <input 
+                        <input
                             id="login"
-                            placeholder="Введите логин..." 
-                            className={styles.inputLogin} 
+                            placeholder="Введите логин..."
+                            className={styles.inputLogin}
                             value={inputValues.login}
                             onChange={(e) => handleInputChange(e, 'login')}
                             onKeyDown={(e) => handleKeyDown(e, 'email')}
                         />
                         <Link href='/faq' className={styles.info}><InfoIcon className={styles.infoIcon} /></Link>
                         <div className={styles.inputState}>
-                            {loadingStates.login && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                            {loadingStates.login && <LoadingIcon width={22} height={22} className={styles.loadingIcon} />}
                             {renderIcon(inputStatuses.login)}
                         </div>
                     </div>
                     <div className={styles.wrap}>
                         <div className={styles.mail}>
                             <MailIcon className={styles.mailIcon} />
-                            <input 
+                            <input
                                 id="email"
-                                placeholder="Почта..." 
-                                type="email" 
-                                className={styles.input} 
+                                placeholder="Почта..."
+                                type="email"
+                                className={styles.input}
                                 value={inputValues.email}
                                 onChange={(e) => handleInputChange(e, 'email')}
                                 onKeyDown={(e) => handleKeyDown(e, 'promo')}
                             />
                             <div className={styles.inputStateCondition}>
-                                {loadingStates.email && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                                {loadingStates.email && <LoadingIcon width={22} height={22} className={styles.loadingIcon} />}
                                 {renderIcon(inputStatuses.email)}
                             </div>
                         </div>
                         <div className={styles.promo}>
                             <PromoIcon className={styles.promoIcon} />
-                            <input 
+                            <input
                                 id="promo"
-                                placeholder="Промокод..." 
-                                type="text" 
-                                className={styles.input} 
+                                placeholder="Промокод..."
+                                type="text"
+                                className={styles.input}
                                 value={inputValues.promo}
                                 onChange={(e) => handleInputChange(e, 'promo')}
                                 onKeyDown={(e) => handleKeyDown(e, 'price')}
                             />
                             <div className={styles.inputStateCondition}>
-                                {loadingStates.promo && <LoadingIcon width={22} height={22} className={styles.loadingIcon}/>}
+                                {loadingStates.promo && <LoadingIcon width={22} height={22} className={styles.loadingIcon} />}
                                 {renderIcon(inputStatuses.promo)}
                             </div>
                         </div>
                     </div>
                     <div className={styles.price}>
                         <div className={styles.inputBody}>
-                            <RubIcon width={16} height={20}/>
-                            <input 
+                            <RubIcon width={16} height={20} />
+                            <input
                                 id="price"
-                                type="text" 
+                                type="text"
                                 value={inputValues.price}
                                 onChange={(e) => handleInputChange(e, 'price')}
                             />
@@ -229,9 +240,9 @@ const Checkout: React.FC = () => {
                                 <button type='button' className={styles.btn} onClick={() => handleButtonClick('2000')}>2000₽</button>
                             </div>
                             <div className={styles.list}>
-                                <RusFlag width={22} height={22}/>
+                                <RusFlag width={22} height={22} />
                                 <div className={styles.currency}>руб.</div>
-                                <ArrRight width={7} height={10}/>
+                                <ArrRight width={7} height={10} />
                             </div>
                         </div>
                     </div>
@@ -243,56 +254,56 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className={styles.commission}>
                         <div className={styles.fireIcon}>
-                            <FireIcon width={19} height={23} className={styles.fire}/>
+                            <FireIcon width={19} height={23} className={styles.fire} />
                         </div>
                         <div className={styles.comText}>
-                            Комиссия сервиса за пополнение 
+                            Комиссия сервиса за пополнение
                             <span>10%</span>
                         </div>
                     </div>
-                    <div className={styles.title}><CoinsIcon width={18} height={18}/> Выберите платежную систему</div>
+                    <div className={styles.title}><CoinsIcon width={18} height={18} /> Выберите платежную систему</div>
                     <div className={styles.payment}>
                         <div className={styles.types}>
                             <div
                                 className={`${styles.payItem} ${activeIndex === 0 ? styles.active : ''}`}
                                 onClick={() => handlePayItemClick(0)}
                             >
-                            <SpbIcon className={styles.spb} />
-                            <span>2%</span>
+                                <SpbIcon className={styles.spb} />
+                                <span>2%</span>
                             </div>
                             <div
-                            className={`${styles.payItem} ${activeIndex === 1 ? styles.active : ''}`}
-                            onClick={() => handlePayItemClick(1)}
+                                className={`${styles.payItem} ${activeIndex === 1 ? styles.active : ''}`}
+                                onClick={() => handlePayItemClick(1)}
                             >
-                            <CardIcon className={styles.spb} />
-                            <span>2%</span>
+                                <CardIcon className={styles.spb} />
+                                <span>2%</span>
                             </div>
                             <div
-                            className={`${styles.payItem} ${activeIndex === 2 ? styles.active : ''}`}
-                            onClick={() => handlePayItemClick(2)}
+                                className={`${styles.payItem} ${activeIndex === 2 ? styles.active : ''}`}
+                                onClick={() => handlePayItemClick(2)}
                             >
-                            <TinkIcon className={styles.spb} />
-                            <span>2%</span>
+                                <TinkIcon className={styles.spb} />
+                                <span>2%</span>
                             </div>
                             <div
-                            className={`${styles.payItem} ${activeIndex === 3 ? styles.active : ''}`}
-                            onClick={() => handlePayItemClick(3)}
+                                className={`${styles.payItem} ${activeIndex === 3 ? styles.active : ''}`}
+                                onClick={() => handlePayItemClick(3)}
                             >
-                            <GPayIcon className={styles.spb} />
-                            <span>2%</span>
+                                <GPayIcon className={styles.spb} />
+                                <span>2%</span>
                             </div>
                             <div
-                            className={`${styles.payItem} ${activeIndex === 4 ? styles.active : ''}`}
-                            onClick={() => handlePayItemClick(4)}
+                                className={`${styles.payItem} ${activeIndex === 4 ? styles.active : ''}`}
+                                onClick={() => handlePayItemClick(4)}
                             >
-                            <YandexIcon className={styles.spb} />
-                            <span>2%</span>
+                                <YandexIcon className={styles.spb} />
+                                <span>2%</span>
                             </div>
                         </div>
                     </div>
                     <div className={styles.advantages}>
                         <div className={styles.advItem}>
-                            <WallletIcon width={20} height={19}/>
+                            <WallletIcon width={20} height={19} />
                             <div className={styles.context}>
                                 <div className={styles.advText}>Заплатите</div>
                                 <div className={styles.dots}></div>
@@ -300,7 +311,7 @@ const Checkout: React.FC = () => {
                             </div>
                         </div>
                         <div className={styles.advItem}>
-                            <DiscountIcon width={20} height={20}/>
+                            <DiscountIcon width={20} height={20} />
                             <div className={styles.context}>
                                 <div className={styles.advText}>Комиссия сервиса</div>
                                 <div className={styles.dots}></div>
@@ -308,7 +319,7 @@ const Checkout: React.FC = () => {
                             </div>
                         </div>
                         <div className={styles.advItem}>
-                            <CoinsUpIcon width={18} height={17} className={styles.coinsUp}/>
+                            <CoinsUpIcon width={18} height={17} className={styles.coinsUp} />
                             <div className={styles.context}>
                                 <div className={styles.advTextSh}>Получите на Steam</div>
                                 <div className={styles.dots}></div>
@@ -324,33 +335,34 @@ const Checkout: React.FC = () => {
                         </label>
                     </div>
                     <div className={styles.submitBtn}>
-                        <button 
+                        <button
                             className={isButtonDisabled() ? `${styles.btn} ${styles.disabled}` : styles.btn}
                             disabled={isButtonDisabled()}
                             {...(isButtonDisabled() && {
                                 'data-tooltip-id': 'submit-tooltip',
                                 'data-tooltip-content': 'Недоступно',
-                            })} 
+                            })}
                             onClick={handleSubmit}
                         >
-                            <TouchIcon className={styles.iconTouch} width={20} height={27}/> Пополнить <span>260₽</span>
+                            <TouchIcon className={styles.iconTouch} width={20} height={27} /> Пополнить <span>{inputValues.price}₽</span>
+
                         </button>
-                        <Link 
-                            href='#' 
+                        <Link
+                            href='#'
                             className={styles.check}
                             data-tooltip-id="secure-tooltip"
                             data-tooltip-content="Проверить пополнение без оплаты"
                         >
-                            <SecureIcon width={22} height={22}/>
+                            <SecureIcon width={22} height={22} />
                         </Link>
-                        <Tooltip 
-                            id="submit-tooltip" 
-                            className={styles.customTooltip} 
+                        <Tooltip
+                            id="submit-tooltip"
+                            className={styles.customTooltip}
                             place="bottom-end" noArrow
                         />
-                        <Tooltip 
-                            id="secure-tooltip" 
-                            className={styles.customTooltip} 
+                        <Tooltip
+                            id="secure-tooltip"
+                            className={styles.customTooltip}
                             place="bottom-start" noArrow
                         />
                     </div>
