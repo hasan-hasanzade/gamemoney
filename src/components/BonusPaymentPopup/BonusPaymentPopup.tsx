@@ -9,13 +9,15 @@ import UserIcon from '../../../public/bonus/user.svg';
 import CheckedIcon from '../../../public/bonus/checked.svg';
 import UnCheckedIcon from '../../../public/bonus/unchecked.svg';
 import { Tooltip } from 'react-tooltip';
+import { useBonusPopupStore } from '@/shared/store/bonusPopupStore';
 
 const BonusPaymentPopup = () => {
+    const { setIsOpen } = useBonusPopupStore()
     return (
         <div className={styles.overlay}>
             <div className={styles.bonus}>
                 <div className={styles.body}>
-                    <CloseIcon className={styles.closeIcon} />
+                    <CloseIcon className={styles.closeIcon} onClick={() => setIsOpen(false)} />
                     <div className={styles.content}>
                         <div className={styles.conditions}>
                             <h2 className={styles.title}>Пополнение без оплаты</h2>

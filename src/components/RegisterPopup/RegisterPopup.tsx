@@ -54,7 +54,7 @@ const RegisterPopup = () => {
             <div className={styles.overlay}></div> {/* Overlay */}
             <div className={styles.registerMain}>
                 <div className={styles.body}>
-                    <CloseIcon className={styles.closeIcon} />
+                    <CloseIcon className={styles.closeIcon} onClick={() => setRegisterPopup(false)} />
                     {isSuccess && <div className={styles.successs}>Успешно зарегистрирован</div>}
                     <h2 className={styles.title}>Добро пожаловать,</h2>
                     <div className={styles.subtitle}>Укажите вашу почту</div>

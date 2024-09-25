@@ -77,7 +77,7 @@ const LoginPopup = () => {
             <div className={styles.overlay}></div> {/* Overlay */}
             <div className={styles.login}>
                 <div className={styles.body}>
-                    <CloseIcon className={styles.closeIcon} />
+                    <CloseIcon className={styles.closeIcon} onClick={() => setIsOpen(false)} />
                     {isSuccess && <div className={styles.successs}>Успешно авторизован</div>}
                     <h2 className={styles.title}>Добро пожаловать,</h2>
                     <div className={styles.subtitle}>Войдите в свой аккаунт</div>
@@ -110,7 +110,7 @@ const LoginPopup = () => {
                             </button>
                         </div>
                         <div id="VkIdSdkOneTap"></div>
-                        <LoginButton botUsername='isapchatbot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
+                        <LoginButton botUsername='wyCNEcDbTASyDgJ_bot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
                         <div className={styles.options}>
                             <Link href='#' className={styles.forgot}>
                                 <SearchIcon className={styles.optionIcon} width={21} height={21} />
