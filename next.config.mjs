@@ -2,6 +2,9 @@
 const nextConfig = {
 
 
+    images: {
+        domains: ['t.me', 'cdn4.cdn-telegram.org'],
+    },
     output: 'standalone',
     webpack(config) {
         config.module.rules.push({

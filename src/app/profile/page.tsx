@@ -36,6 +36,7 @@ const page = () => {
                         <div className={styles.account}>
                             <div className={styles.image}>
                                 <Image src={user.avatar || '/header/profile.jpg'} width={76} height={76} alt='пользователь' />
+
                             </div>
                             <div className={styles.profileInfo}>
                                 <div className={styles.name}>
