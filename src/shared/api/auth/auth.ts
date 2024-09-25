@@ -28,6 +28,11 @@ export async function setOffline() {
     await instance.get('/auth/offline', { headers: { Authorization: `Bearer ${token}` } })
 }
 
+export async function forgotPassword(email: string): Promise<AxiosResponse<IUser>> {
+    const user = await instance.post('/auth/forgotPassword', { email })
+    return user
+}
+
 export async function getMe(): Promise<AxiosResponse<IUser>> {
     const token = getCookie("accessToken")
     const user = await instance.get('/auth/getMe', { headers: { Authorization: `Bearer ${token}` } })

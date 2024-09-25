@@ -4,16 +4,15 @@ import MailIcon from '../../../public/auth/mail.svg';
 import CloseIcon from '../../../public/auth/close.svg';
 import KeyIcon from '../../../public/auth/key.svg';
 import VkIcon from '../../../public/auth/vk.svg';
-import TgIcon from '../../../public/auth/tg.svg';
 import SearchIcon from '../../../public/auth/search.svg';
 import UserIcon from '../../../public/auth/user.svg';
 import Link from 'next/link';
 import { useLoginPopupStore } from '@/shared/store/loginPopupStore';
 import { useRegisterPopupStore } from '@/shared/store/registerPopupStore';
 import { login, register } from '@/shared/api/auth/auth';
-import { useRouter } from 'next/router';
 import { setCookie } from '@/lib/utils';
 import { LoginButton } from '@telegram-auth/react';
+import { useForgotPopupStore } from '@/shared/store/forgotPopupStore';
 
 const RegisterPopup = () => {
     const [email, setEmail] = useState("")
@@ -22,11 +21,16 @@ const RegisterPopup = () => {
 
     const { setIsOpen } = useLoginPopupStore()
     const { setIsOpen: setRegisterPopup } = useRegisterPopupStore()
+    const { setIsOpen: setForgotPopup } = useForgotPopupStore()
 
 
     const goToLogin = () => {
         setRegisterPopup(false)
         setIsOpen(true)
+    }
+    const goToForgot = () => {
+        setRegisterPopup(false)
+        setForgotPopup(true)
     }
 
 
@@ -44,7 +48,7 @@ const RegisterPopup = () => {
         const user = await register({ email, password })
         if (user.status == 201) {
             setIsSuccess(true)
-            goToLogin()
+            // goToLogin()
 
         }
     }
@@ -100,7 +104,7 @@ const RegisterPopup = () => {
                         </div>
                         <LoginButton botUsername='wyCNEcDbTASyDgJ_bot' onAuthCallback={(data) => tgAuth(data)} buttonSize='medium' lang='ru' />
                         <div className={styles.options}>
-                            <Link href='#' className={styles.forgot}>
+                            <Link href='#' className={styles.forgot} onClick={() => goToForgot()}>
                                 <SearchIcon className={styles.optionIcon} width={21} height={21} />
                                 <span>Забыли пароль?</span>
                             </Link>

@@ -20,12 +20,15 @@ import { useBonusPopupStore } from '@/shared/store/bonusPopupStore';
 import { useAuth } from '@/app/auth-wrapper';
 import { useRegisterPopupStore } from '@/shared/store/registerPopupStore';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
+import ForgotPopup from '../ForgotPopup/ForgotPopup';
+import { useForgotPopupStore } from '@/shared/store/forgotPopupStore';
 
 const Header = () => {
     const { isOpen: loginOpen, setIsOpen: loginSetOpen } = useLoginPopupStore()
     const { isAuth } = useAuth()
     const { isOpen: bonusOpen, setIsOpen: bonusSetOpen } = useBonusPopupStore()
     const { isOpen: registerOpen, setIsOpen: registerSetOpen } = useRegisterPopupStore()
+    const { isOpen: forgotOpen, setIsOpen: forgotSetOpen } = useForgotPopupStore()
     const handleAuthClick = () => {
         if (isAuth) {
             bonusSetOpen(true)
@@ -86,7 +89,8 @@ const Header = () => {
             </div>
             {loginOpen && <LoginPopup />}
             {bonusOpen && <BonusPaymentPopup />}
-            {registerOpen && <RegisterPopup/>}
+            {registerOpen && <RegisterPopup />}
+            {forgotOpen && <ForgotPopup />}
 
         </div>
     );
